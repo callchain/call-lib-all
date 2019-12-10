@@ -1,8 +1,8 @@
 import * as common from '../common'
 // import keypairs = require('call-keypairs')
-import keypairs = require('../../pack/call-keypairs')
+import keypairs = require('../call-keypairs')
 // import binary = require('call-binary-codec')
-import binary = require('../../pack/call-binary-codec')
+import binary = require('../call-binary-codec')
 
 const {validate, callToDrops} = common
 

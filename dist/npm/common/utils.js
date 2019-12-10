@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 var bignumber_js_1 = require("bignumber.js");
-// var deriveKeypair = require('call-keypairs').deriveKeypair;
-var deriveKeypair = require('../../../pack/call-keypairs').deriveKeypair;
+// const {deriveKeypair} = require('call-keypairs')
+var deriveKeypair = require('../call-keypairs').deriveKeypair;
 function isValidSecret(secret) {
     try {
         deriveKeypair(secret);

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// var keypairs = require("call-keypairs");
-var keypairs = require("../../../pack/call-keypairs");
+// import keypairs = require('call-keypairs')
+var keypairs = require("../call-keypairs");
 var common = require("../common");
 var errors = common.errors, validate = common.validate;
 function generateAddress(options) {

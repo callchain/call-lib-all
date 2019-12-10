@@ -4,8 +4,8 @@ var _ = require("lodash");
 var assert = require("assert");
 var Validator = require('jsonschema').Validator;
 var errors_1 = require("./errors");
-// var call_address_codec_1 = require("call-address-codec");
-var call_address_codec_1 = require("../../../pack/call-address-codec");
+// import {isValidAddress} from 'call-address-codec'
+var call_address_codec_1 = require("../call-address-codec");
 var utils_1 = require("./utils");
 exports.isValidSecret = utils_1.isValidSecret;
 function loadSchemas() {

@@ -1,13 +1,13 @@
 import * as _ from 'lodash'
 // import binary = require('call-binary-codec')
-import binary = require('../../pack/call-binary-codec')
+import binary = require('../call-binary-codec')
 import * as utils from './utils'
 import BigNumber from 'bignumber.js'
 // import {decodeAddress} from 'call-address-codec'
-import {decodeAddress} from '../../pack/call-address-codec'
+import {decodeAddress} from '../call-address-codec'
 import {validate} from '../common'
 // import {computeBinaryTransactionHash} from 'call-hashes'
-import {computeBinaryTransactionHash} from '../../pack/call-hashes'
+import {computeBinaryTransactionHash} from '../call-hashes'
 
 function addressToBigNumber(address) {
   const hex = (new Buffer(decodeAddress(address))).toString('hex')

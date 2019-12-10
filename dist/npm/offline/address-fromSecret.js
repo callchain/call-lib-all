@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// var keypairs = require("call-keypairs");
-var keypairs = require("../../../pack/call-keypairs");
+// import keypairs = require('call-keypairs')
+var keypairs = require("../call-keypairs");
 function fromSecret(secret) {
     try {
         var keypair = keypairs.deriveKeypair(secret);

@@ -1,8 +1,8 @@
 import * as _ from 'lodash'
 // import binary = require('call-binary-codec')
-import binary = require('../../pack/call-binary-codec')
+import binary = require('../call-binary-codec')
 // const {computeTransactionHash} = require('call-hashes')
-const {computeTransactionHash} = require('../../pack/call-hashes')
+const {computeTransactionHash} = require('../call-hashes')
 import * as utils from './utils'
 import parseTransaction from './parse/transaction'
 import getTransaction from './transaction'

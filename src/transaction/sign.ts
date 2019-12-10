@@ -1,10 +1,10 @@
 import * as utils from './utils'
 // import keypairs = require('call-keypairs')
-import keypairs = require('../../pack/call-keypairs')
+import keypairs = require('../call-keypairs')
 // import binary = require('call-binary-codec')
-import binary = require('../../pack/call-binary-codec')
+import binary = require('../call-binary-codec')
 // import {computeBinaryTransactionHash} from 'call-hashes'
-import {computeBinaryTransactionHash} from '../../pack/call-hashes'
+import {computeBinaryTransactionHash} from '../call-hashes'
 const validate = utils.common.validate
 
 function computeSignature(tx: Object, privateKey: string, signAs?: string) {

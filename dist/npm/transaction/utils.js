@@ -14,12 +14,12 @@ function formatPrepareResponse(txJSON) {
         instructions: instructions
     };
 }
-function setCanonicalFlag(txJSON) {
-    txJSON.Flags |= txFlags.Universal.FullyCanonicalSig;
-    // JavaScript converts operands to 32-bit signed ints before doing bitwise
-    // operations. We need to convert it back to an unsigned int.
-    txJSON.Flags = txJSON.Flags >>> 0;
-}
+// function setCanonicalFlag(txJSON) {
+//   txJSON.Flags |= txFlags.Universal.FullyCanonicalSig
+//   // JavaScript converts operands to 32-bit signed ints before doing bitwise
+//   // operations. We need to convert it back to an unsigned int.
+//   txJSON.Flags = txJSON.Flags >>> 0
+// }
 function scaleValue(value, multiplier, extra) {
     if (extra === void 0) { extra = 0; }
     return (new bignumber_js_1.default(value)).times(multiplier).plus(extra).toString();

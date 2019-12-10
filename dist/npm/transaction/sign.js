@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils = require("./utils");
-// var keypairs = require("call-keypairs");
-var keypairs = require("../../../pack/call-keypairs");
-// var binary = require("call-binary-codec");
-var binary = require("../../../pack/call-binary-codec");
-// var call_hashes_1 = require("call-hashes");
-var call_hashes_1 = require("../../../pack/call-hashes");
+// import keypairs = require('call-keypairs')
+var keypairs = require("../call-keypairs");
+// import binary = require('call-binary-codec')
+var binary = require("../call-binary-codec");
+// import {computeBinaryTransactionHash} from 'call-hashes'
+var call_hashes_1 = require("../call-hashes");
 var validate = utils.common.validate;
 function computeSignature(tx, privateKey, signAs) {
     var signingData = signAs ?
@@ -14,10 +14,10 @@ function computeSignature(tx, privateKey, signAs) {
     return keypairs.sign(signingData, privateKey);
 }
 function sign(txJSON, secret, options) {
-    if (options === void 0) { options = {}; }
-    // validate.sign({ txJSON: txJSON, secret: secret });
+    // validate.sign({txJSON, secret})
     // we can't validate that the secret matches the account because
     // the secret could correspond to the regular key
+    if (options === void 0) { options = {}; }
     var tx = JSON.parse(txJSON);
     if (tx.TxnSignature || tx.Signers) {
         throw new utils.common.errors.ValidationError('txJSON must not contain "TxnSignature" or "Signers" properties');

@@ -18,13 +18,13 @@ function formatPrepareResponse(txJSON: any): Prepare {
   }
 }
 
-function setCanonicalFlag(txJSON) {
-  txJSON.Flags |= txFlags.Universal.FullyCanonicalSig
+// function setCanonicalFlag(txJSON) {
+//   txJSON.Flags |= txFlags.Universal.FullyCanonicalSig
 
-  // JavaScript converts operands to 32-bit signed ints before doing bitwise
-  // operations. We need to convert it back to an unsigned int.
-  txJSON.Flags = txJSON.Flags >>> 0
-}
+//   // JavaScript converts operands to 32-bit signed ints before doing bitwise
+//   // operations. We need to convert it back to an unsigned int.
+//   txJSON.Flags = txJSON.Flags >>> 0
+// }
 
 function scaleValue(value, multiplier, extra = 0) {
   return (new BigNumber(value)).times(multiplier).plus(extra).toString()

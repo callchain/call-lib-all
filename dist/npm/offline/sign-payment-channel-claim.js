@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var common = require("../common");
-// var keypairs = require("call-keypairs");
-var keypairs = require("../../../pack/call-keypairs");
-// var binary = require("call-binary-codec");
-var binary = require("../../../pack/call-binary-codec");
+// import keypairs = require('call-keypairs')
+var keypairs = require("../call-keypairs");
+// import binary = require('call-binary-codec')
+var binary = require("../call-binary-codec");
 var validate = common.validate, callToDrops = common.callToDrops;
 function signPaymentChannelClaim(channel, amount, privateKey) {
     validate.signPaymentChannelClaim({ channel: channel, amount: amount, privateKey: privateKey });

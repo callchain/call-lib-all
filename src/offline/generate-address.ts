@@ -1,5 +1,5 @@
 // import keypairs = require('call-keypairs')
-import keypairs = require('../../pack/call-keypairs')
+import keypairs = require('../call-keypairs')
 import * as common from '../common'
 const {errors, validate} = common
 

@@ -1,7 +1,7 @@
 // import keypairs = require('call-keypairs')
-import keypairs = require('../../pack/call-keypairs')
+import keypairs = require('../call-keypairs')
 // import binary = require('call-binary-codec')
-import binary = require('../../pack/call-binary-codec')
+import binary = require('../call-binary-codec')
 import {validate, callToDrops} from '../common'
 
 function verifyPaymentChannelClaim(channel: string, amount: string,

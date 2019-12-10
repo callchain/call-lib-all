@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-// var transactionParser = require("call-lib-transactionparser");
-var transactionParser = require("../../../../pack/call-lib-transactionparser");
+// import transactionParser = require('call-lib-transactionparser')
+var transactionParser = require("../../call-lib-transactionparser");
 var bignumber_js_1 = require("bignumber.js");
 var common = require("../../common");
 var amount_1 = require("./amount");
