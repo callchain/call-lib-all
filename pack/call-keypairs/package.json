@@ -1,0 +1,57 @@
+{
+  "_from": "call-keypairs@^0.1.0",
+  "_id": "call-keypairs@0.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-erOw5ZWGKW2lmBuk1a0i9l0Kc73Q97vMSHRumQxCFP1KdLSsp9MjYF7EqP+/cWd7EjHfbUS7fgFPzkTnE9Kisw==",
+  "_location": "/call-keypairs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "call-keypairs@^0.1.0",
+    "name": "call-keypairs",
+    "escapedName": "call-keypairs",
+    "rawSpec": "^0.1.0",
+    "saveSpec": null,
+    "fetchSpec": "^0.1.0"
+  },
+  "_requiredBy": [
+    "/call-lib"
+  ],
+  "_resolved": "https://registry.npmjs.org/call-keypairs/-/call-keypairs-0.1.0.tgz",
+  "_shasum": "af068d985f278ae55314cae43e34f7f966e4bb1c",
+  "_spec": "call-keypairs@^0.1.0",
+  "_where": "D:\\nodejs\\call-api\\node_modules\\call-lib",
+  "bundleDependencies": false,
+  "dependencies": {
+    "babel-runtime": "^5.8.20",
+    "bn.js": "^3.1.1",
+    "brorand": "^1.0.5",
+    "call-address-codec": "^0.1.0",
+    "elliptic": "^5.1.0",
+    "hash.js": "^1.0.3"
+  },
+  "deprecated": false,
+  "description": "call key pairs",
+  "devDependencies": {
+    "assert-diff": "^1.0.1",
+    "babel": "^5.8.20",
+    "babel-core": "^5.8.20",
+    "babel-eslint": "^6.0.0",
+    "babel-loader": "^5.3.2",
+    "codecov.io": "^0.1.6",
+    "coveralls": "~2.11.4",
+    "eslint": "2.7.0",
+    "eventemitter2": "^0.4.14",
+    "istanbul": "~0.3.5",
+    "lodash": "^3.10.0",
+    "map-stream": "~0.1.0",
+    "mocha": "~2.3.3",
+    "nock": "^2.13.0"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "main": "distrib/npm/",
+  "name": "call-keypairs",
+  "version": "0.1.0"
+}

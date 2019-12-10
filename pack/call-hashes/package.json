@@ -1,0 +1,42 @@
+{
+  "_from": "call-hashes@^0.1.0",
+  "_id": "call-hashes@0.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-0E2d7vr7tgUxe0pjfC5tN0TYMfrKlKzhMSNkWzoGLt3KcIU8UIfHDw9fEb5+FZUyrO+HcdwcIm2ly/k/USRHDA==",
+  "_location": "/call-hashes",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "call-hashes@^0.1.0",
+    "name": "call-hashes",
+    "escapedName": "call-hashes",
+    "rawSpec": "^0.1.0",
+    "saveSpec": null,
+    "fetchSpec": "^0.1.0"
+  },
+  "_requiredBy": [
+    "/call-lib"
+  ],
+  "_resolved": "https://registry.npmjs.org/call-hashes/-/call-hashes-0.1.0.tgz",
+  "_shasum": "8c9a527bceb09e7770fc1874be4bee302f16151e",
+  "_spec": "call-hashes@^0.1.0",
+  "_where": "D:\\nodejs\\call-api\\node_modules\\call-lib",
+  "bundleDependencies": false,
+  "dependencies": {
+    "bignumber.js": "^4.1.0",
+    "call-address-codec": "^0.1.0",
+    "call-binary-codec": "^0.1.0",
+    "create-hash": "^1.1.2"
+  },
+  "deprecated": false,
+  "description": "Compute hashes of Call objects",
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "main": "src/index.js",
+  "name": "call-hashes",
+  "version": "0.1.0"
+}

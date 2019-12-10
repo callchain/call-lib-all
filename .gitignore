@@ -2,4 +2,3 @@ node_modules/
 build/*.js
 package-lock.json
 pack1/
-pack/
