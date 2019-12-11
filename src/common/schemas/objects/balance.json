@@ -25,7 +25,7 @@
       "properties": {
         "currency": {
           "not": {
-            "enum": ["CALL"]
+            "enum": ["QYBC"]
           }
         }
       },
@@ -34,7 +34,7 @@
     {
       "properties": {
         "currency": {
-          "enum": ["CALL"]
+          "enum": ["QYBC"]
         }
       },
       "not": {

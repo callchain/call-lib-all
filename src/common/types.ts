@@ -24,7 +24,7 @@ export type LaxLaxAmount = {
   counterparty?: string
 }
 
-// A currency-counterparty pair, or just currency if it's CALL
+// A currency-counterparty pair, or just currency if it's QYBC
 export type Issue = {
   currency: string,
   issuer?: string,

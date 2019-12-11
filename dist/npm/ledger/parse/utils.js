@@ -8,9 +8,9 @@ var common = require("../../common");
 var amount_1 = require("./amount");
 function adjustQualityForCALL(quality, takerGetsCurrency, takerPaysCurrency) {
     // quality = takerPays.value/takerGets.value
-    // using drops (1e-6 CALL) for CALL values
-    var numeratorShift = (takerPaysCurrency === 'CALL' ? -6 : 0);
-    var denominatorShift = (takerGetsCurrency === 'CALL' ? -6 : 0);
+    // using drops (1e-6 QYBC) for QYBC values
+    var numeratorShift = (takerPaysCurrency === 'QYBC' ? -6 : 0);
+    var denominatorShift = (takerGetsCurrency === 'QYBC' ? -6 : 0);
     var shift = numeratorShift - denominatorShift;
     return shift === 0 ? quality :
         (new bignumber_js_1.default(quality)).shift(shift).toString();

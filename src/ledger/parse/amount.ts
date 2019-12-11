@@ -5,7 +5,7 @@ import {Amount, CalledAmount} from '../../common/types'
 function parseAmount(amount: CalledAmount): Amount {
   if (typeof amount === 'string') {
     return {
-      currency: 'CALL',
+      currency: 'QYBC',
       value: common.dropsToCall(amount)
     }
   }

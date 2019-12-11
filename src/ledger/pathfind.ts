@@ -56,7 +56,7 @@ function requestPathFind(connection: Connection, pathfind: PathFind
 
 function addDirectCallPath(paths: CalledPathsResponse, callBalance: string
 ): CalledPathsResponse {
-  // Add CALL "path" only if the source acct has enough CALL to make the payment
+  // Add QYBC "path" only if the source acct has enough QYBC to make the payment
   const destinationAmount = paths.destination_amount
   // @ts-ignore: destinationAmount can be a currency amount object! Fix!
   if ((new BigNumber(callBalance)).greaterThanOrEqualTo(destinationAmount)) {
@@ -70,14 +70,14 @@ function addDirectCallPath(paths: CalledPathsResponse, callBalance: string
 
 function isCalledIOUAmount(amount: CalledAmount) {
   return (typeof amount === 'object') &&
-    amount.currency && (amount.currency !== 'CALL')
+    amount.currency && (amount.currency !== 'QYBC')
 }
 
 function conditionallyAddDirectCALLPath(connection: Connection, address: string,
   paths: CalledPathsResponse
 ): Promise<CalledPathsResponse> {
   if (isCalledIOUAmount(paths.destination_amount)
-      || !_.includes(paths.destination_currencies, 'CALL')) {
+      || !_.includes(paths.destination_currencies, 'QYBC')) {
     return Promise.resolve(paths)
   }
   return getCALLBalance(connection, address, undefined).then(

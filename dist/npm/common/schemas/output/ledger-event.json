@@ -6,7 +6,7 @@
   "properties": {
     "baseFeeCALL": {
       "$ref": "value",
-      "description": "Base fee, in CALL."
+      "description": "Base fee, in QYBC."
     },
     "ledgerHash": {
       "$ref": "hash256",
@@ -23,7 +23,7 @@
     },
     "reserveBaseCALL": {
       "$ref": "value",
-      "description": "The minimum reserve, in CALL, that is required for an account."
+      "description": "The minimum reserve, in QYBC, that is required for an account."
     },
     "reserveIncrementCALL": {
       "$ref": "value",

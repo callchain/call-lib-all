@@ -41,7 +41,7 @@ function requestPathFind(connection, pathfind) {
     return connection.request(request).then(function (paths) { return addParams(request, paths); });
 }
 function addDirectCallPath(paths, callBalance) {
-    // Add CALL "path" only if the source acct has enough CALL to make the payment
+    // Add QYBC "path" only if the source acct has enough QYBC to make the payment
     var destinationAmount = paths.destination_amount;
     // @ts-ignore: destinationAmount can be a currency amount object! Fix!
     if ((new bignumber_js_1.default(callBalance)).greaterThanOrEqualTo(destinationAmount)) {
@@ -54,11 +54,11 @@ function addDirectCallPath(paths, callBalance) {
 }
 function isCalledIOUAmount(amount) {
     return (typeof amount === 'object') &&
-        amount.currency && (amount.currency !== 'CALL');
+        amount.currency && (amount.currency !== 'QYBC');
 }
 function conditionallyAddDirectCALLPath(connection, address, paths) {
     if (isCalledIOUAmount(paths.destination_amount)
-        || !_.includes(paths.destination_currencies, 'CALL')) {
+        || !_.includes(paths.destination_currencies, 'QYBC')) {
         return Promise.resolve(paths);
     }
     return utils_1.getCALLBalance(connection, address, undefined).then(function (callBalance) { return addDirectCallPath(paths, callBalance); });

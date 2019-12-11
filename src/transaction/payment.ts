@@ -27,11 +27,11 @@ function isCALLToCALLPayment(payment: Payment): boolean {
     _.get(payment, 'source.amount.currency'))
   const destinationCurrency = _.get(payment, 'destination.amount.currency',
     _.get(payment, 'destination.minAmount.currency'))
-  return sourceCurrency === 'CALL' && destinationCurrency === 'CALL'
+  return sourceCurrency === 'QYBC' && destinationCurrency === 'QYBC'
 }
 
 function isIOUWithoutCounterparty(amount: Amount): boolean {
-  return amount && amount.currency !== 'CALL'
+  return amount && amount.currency !== 'QYBC'
     && amount.counterparty === undefined
 }
 
@@ -48,7 +48,7 @@ function applyAnyCounterpartyEncoding(payment: Payment): void {
 function createMaximalAmount(amount: Amount): Amount {
   const maxCALLValue = '100000000000'
   const maxIOUValue = '9999999999999999e80'
-  const maxValue = amount.currency === 'CALL' ? maxCALLValue : maxIOUValue
+  const maxValue = amount.currency === 'QYBC' ? maxCALLValue : maxIOUValue
   return _.assign({}, amount, {value: maxValue})
 }
 
@@ -114,7 +114,7 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
       txJSON.Paths = JSON.parse(payment.paths)
     }
   } else if (payment.allowPartialPayment === true) {
-    throw new ValidationError('CALL to CALL payments cannot be partial payments')
+    throw new ValidationError('QYBC to QYBC payments cannot be partial payments')
   }
 
   return txJSON

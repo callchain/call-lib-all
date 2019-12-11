@@ -9,7 +9,7 @@
     },
     "callBalance": {
       "$ref": "value",
-      "description": "The CALL balance owned by the account."
+      "description": "The QYBC balance owned by the account."
     },
     "ownerCount": {
       "type": "integer",

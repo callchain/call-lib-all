@@ -43,8 +43,8 @@ function getExpirationTime(node) {
 function getQuality(node) {
   var takerGets = node.finalFields.TakerGets || node.newFields.TakerGets
   var takerPays = node.finalFields.TakerPays || node.newFields.TakerPays
-  var takerGetsCurrency = takerGets.currency || 'CALL'
-  var takerPaysCurrency = takerPays.currency || 'CALL'
+  var takerGetsCurrency = takerGets.currency || 'QYBC'
+  var takerPaysCurrency = takerPays.currency || 'QYBC'
   var bookDirectory = node.finalFields.BookDirectory
     || node.newFields.BookDirectory
   var qualityHex = bookDirectory.substring(bookDirectory.length - 16)

@@ -1,15 +1,15 @@
 {
-  "_from": "call-lib-all",
+  "_from": "qybc-lib-all",
   "_inBundle": false,
   "_integrity": "sha512-bout4kBtdNiWqxk1dg4wtKdtttSgvbQ26TAxwOhVcySrkIuBDxtwjQkr+5CRYw2smsCiYt/vZQJ8sXThqyk4uA==",
-  "_location": "/call-lib-all",
+  "_location": "/qybc-lib-all",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "call-lib-all",
-    "name": "call-lib-all",
-    "escapedName": "call-lib-all",
+    "raw": "qybc-lib-all",
+    "name": "qybc-lib-all",
+    "escapedName": "qybc-lib-all",
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
@@ -20,7 +20,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/call-lib/-/call-lib-0.1.7.tgz",
   "_shasum": "b4a87bf5ef3bb438de3c63d0e8962144302842b7",
-  "_spec": "call-lib-all",
+  "_spec": "qybc-lib-all",
   "_where": "D:\\newwork\\lib-cli",
   "author": "anonymous node/sails user",
   "dependencies": {
@@ -42,7 +42,7 @@
     "ws": "^3.3.1"
   },
   "deprecated": false,
-  "description": "A JavaScript API for interacting with the CALL Ledger",
+  "description": "A JavaScript API for interacting with the QYBC Ledger",
   "devDependencies": {
     "@types/node": "^8.0.53",
     "assert-diff": "^1.0.1",
@@ -98,17 +98,17 @@
   "keywords": [],
   "license": "ISC",
   "main": "dist/npm/",
-  "name": "call-lib-all",
+  "name": "qybc-lib-all",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "version": "0.0.2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/callchain/call-lib-all.git"
+    "url": "git+https://github.com/callchain/qybc-lib-all.git"
   },
   "bugs": {
-    "url": "https://github.com/callchain/call-lib-all/issues"
+    "url": "https://github.com/callchain/qybc-lib-all/issues"
   },
-  "homepage": "https://github.com/callchain/call-lib-all#readme"
+  "homepage": "https://github.com/callchain/qybc-lib-all#readme"
 }

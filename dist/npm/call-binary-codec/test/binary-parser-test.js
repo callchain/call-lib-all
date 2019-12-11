@@ -125,7 +125,7 @@ function transactionParsingTests() {
       const [field, value] = readField();
       assert.equal(field, Field.TakerPays);
       assert.equal(value.currency.isNative(), true);
-      assert.equal(value.currency.toJSON(), 'CALL');
+      assert.equal(value.currency.toJSON(), 'QYBC');
     }
     {
       const [field, value] = readField();

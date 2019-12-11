@@ -1,13 +1,13 @@
 # call-lib-all
 
-A JavaScript API for interacting with the CALL Ledger
+A JavaScript API for interacting with the QYBC Ledger
 
 
 ### Features
 
 + Connect to a `call` server from Node.js or a web browser
-+ Listen to events on the CALL Ledger (transaction, ledger, etc.)
-+ Sign and submit transactions to the CALL Ledger
++ Listen to events on the QYBC Ledger (transaction, ledger, etc.)
++ Sign and submit transactions to the QYBC Ledger
 
 
 Install `call-lib-all`:

@@ -9,10 +9,10 @@ var ValidationError = utils.common.errors.ValidationError;
 function isCALLToCALLPayment(payment) {
     var sourceCurrency = _.get(payment, 'source.maxAmount.currency', _.get(payment, 'source.amount.currency'));
     var destinationCurrency = _.get(payment, 'destination.amount.currency', _.get(payment, 'destination.minAmount.currency'));
-    return sourceCurrency === 'CALL' && destinationCurrency === 'CALL';
+    return sourceCurrency === 'QYBC' && destinationCurrency === 'QYBC';
 }
 function isIOUWithoutCounterparty(amount) {
-    return amount && amount.currency !== 'CALL'
+    return amount && amount.currency !== 'QYBC'
         && amount.counterparty === undefined;
 }
 function applyAnyCounterpartyEncoding(payment) {
@@ -27,7 +27,7 @@ function applyAnyCounterpartyEncoding(payment) {
 function createMaximalAmount(amount) {
     var maxCALLValue = '100000000000';
     var maxIOUValue = '9999999999999999e80';
-    var maxValue = amount.currency === 'CALL' ? maxCALLValue : maxIOUValue;
+    var maxValue = amount.currency === 'QYBC' ? maxCALLValue : maxIOUValue;
     return _.assign({}, amount, { value: maxValue });
 }
 function createPaymentTransaction(address, paymentArgument) {
@@ -85,7 +85,7 @@ function createPaymentTransaction(address, paymentArgument) {
         }
     }
     else if (payment.allowPartialPayment === true) {
-        throw new ValidationError('CALL to CALL payments cannot be partial payments');
+        throw new ValidationError('QYBC to QYBC payments cannot be partial payments');
     }
     return txJSON;
 }

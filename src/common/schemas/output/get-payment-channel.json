@@ -9,19 +9,19 @@
     },
     "destination": {
       "$ref": "address",
-      "description": "Address to receive CALL claims against this channel."
+      "description": "Address to receive QYBC claims against this channel."
     },
     "amount": {
       "$ref": "value",
-      "description": "The total amount of CALL funded in this channel."
+      "description": "The total amount of QYBC funded in this channel."
     },
     "balance": {
       "$ref": "value",
-      "description": "The total amount of CALL delivered by this channel."
+      "description": "The total amount of QYBC delivered by this channel."
     },
     "settleDelay": {
       "type": "number",
-      "description": "Amount of seconds the source address must wait before closing the channel if it has unclaimed CALL."
+      "description": "Amount of seconds the source address must wait before closing the channel if it has unclaimed QYBC."
     },
     "expiration": {
       "type": "string",

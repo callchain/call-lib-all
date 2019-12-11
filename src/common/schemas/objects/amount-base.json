@@ -13,7 +13,7 @@
       "$ref": "currency"
     },
     "counterparty": {
-      "description": "The Call address of the account that owes or is owed the funds (omitted if `currency` is \"CALL\")",
+      "description": "The Call address of the account that owes or is owed the funds (omitted if `currency` is \"QYBC\")",
       "$ref": "address"
     }
   },
@@ -24,7 +24,7 @@
       "properties": {
         "currency": {
           "not": {
-            "enum": ["CALL"]
+            "enum": ["QYBC"]
           }
         }
       },
@@ -33,7 +33,7 @@
     {
       "properties": {
         "currency": {
-          "enum": ["CALL"]
+          "enum": ["QYBC"]
         }
       },
       "not": {

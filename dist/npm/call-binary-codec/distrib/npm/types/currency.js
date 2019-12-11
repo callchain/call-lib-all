@@ -7,7 +7,7 @@ var HEX_REGEX = /^[A-F0-9]{40}$/;
 
 function isoToBytes(iso) {
   var bytes = new Uint8Array(20);
-  if (iso !== 'CALL') {
+  if (iso !== 'QYBC') {
     var isoBytes = iso.split('').map(function (c) {return c.charCodeAt(0);});
     bytes.set(isoBytes, 12);
   }
@@ -49,7 +49,7 @@ var Currency = makeClass({
   getters: ['isNative', 'iso'],
   statics: {
     init: function init() {
-      this.CALL = new this(new Uint8Array(20));
+      this.QYBC = new this(new Uint8Array(20));
     },
     from: function from(val) {
       return val instanceof this ? val : new this(bytesFromRepr(val));
@@ -75,9 +75,9 @@ var Currency = makeClass({
         break;
       }
     }
-    var lossLessISO = onlyISO && iso !== 'CALL' && ISO_REGEX.test(iso);
+    var lossLessISO = onlyISO && iso !== 'QYBC' && ISO_REGEX.test(iso);
     this._isNative = onlyISO && _.isEqual(code, [0, 0, 0]);
-    this._iso = this._isNative ? 'CALL' : lossLessISO ? iso : null;
+    this._iso = this._isNative ? 'QYBC' : lossLessISO ? iso : null;
   },
   toJSON: function toJSON() {
     if (this.iso()) {

@@ -33,7 +33,7 @@ function parseCurrencyAmount(currencyAmount) {
   }
   if (typeof currencyAmount === 'string') {
     return {
-      currency: 'CALL',
+      currency: 'QYBC',
       value: dropsToCALL(new BigNumber(currencyAmount)).toString()
     }
   }

@@ -6,11 +6,11 @@
   "properties": {
     "amount": {
       "$ref": "value",
-      "description": "Amount of CALL for sender to escrow."
+      "description": "Amount of QYBC for sender to escrow."
     },
     "destination": {
       "$ref": "address",
-      "description": "Address to receive escrowed CALL."
+      "description": "Address to receive escrowed QYBC."
     },
     "memos": {"$ref": "memos"},
     "condition": {

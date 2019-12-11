@@ -23,7 +23,7 @@ function callToDrops(call: string): string {
 }
 
 function toCalledAmount(amount: Amount): CalledAmount {
-  if (amount.currency === 'CALL') {
+  if (amount.currency === 'QYBC') {
     return callToDrops(amount.value)
   }
   return {

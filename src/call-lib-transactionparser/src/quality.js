@@ -4,12 +4,12 @@ var BigNumber = require('bignumber.js')
 
 /*
 The quality, as stored in the last 64 bits of a directory index, is stored as
-the quotient of TakerPays/TakerGets. It uses drops (1e-6 CALL) for CALL values.
+the quotient of TakerPays/TakerGets. It uses drops (1e-6 QYBC) for QYBC values.
 */
 
 function adjustQualityForCALL(quality, takerGetsCurrency, takerPaysCurrency) {
-  var numeratorShift = (takerPaysCurrency === 'CALL' ? -6 : 0)
-  var denominatorShift = (takerGetsCurrency === 'CALL' ? -6 : 0)
+  var numeratorShift = (takerPaysCurrency === 'QYBC' ? -6 : 0)
+  var denominatorShift = (takerGetsCurrency === 'QYBC' ? -6 : 0)
   var shift = numeratorShift - denominatorShift
   return shift === 0 ? (new BigNumber(quality)).toString() :
     (new BigNumber(quality)).shift(shift).toString()

@@ -41,7 +41,7 @@
     },
     "totalDrops": {
       "$ref": "value",
-      "description": "Total number of drops (1/1,000,000th of an CALL) in the network, as a quoted integer. (This decreases as transaction fees cause CALL to be destroyed.)"
+      "description": "Total number of drops (1/1,000,000th of an QYBC) in the network, as a quoted integer. (This decreases as transaction fees cause QYBC to be destroyed.)"
     },
     "transactionHash": {
       "$ref": "hash256",

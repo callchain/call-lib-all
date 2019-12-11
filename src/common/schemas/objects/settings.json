@@ -17,7 +17,7 @@
     },
     "disallowIncomingCALL": {
       "type": "boolean",
-      "description": "Indicates that client applications should not send CALL to this account. Not enforced by no_called."
+      "description": "Indicates that client applications should not send QYBC to this account. Not enforced by no_called."
     },
     "disableMasterKey": {
       "type": "boolean",

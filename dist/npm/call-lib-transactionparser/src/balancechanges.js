@@ -52,7 +52,7 @@ function parseCALLQuantity(node, valueParser) {
     address: node.finalFields.Account || node.newFields.Account,
     balance: {
       counterparty: '',
-      currency: 'CALL',
+      currency: 'QYBC',
       value: dropsToCALL(value).toString()
     }
   }

@@ -11,9 +11,9 @@ function adjustQualityForCALL(
   quality: string, takerGetsCurrency: string, takerPaysCurrency: string
 ) {
   // quality = takerPays.value/takerGets.value
-  // using drops (1e-6 CALL) for CALL values
-  const numeratorShift = (takerPaysCurrency === 'CALL' ? -6 : 0)
-  const denominatorShift = (takerGetsCurrency === 'CALL' ? -6 : 0)
+  // using drops (1e-6 QYBC) for QYBC values
+  const numeratorShift = (takerPaysCurrency === 'QYBC' ? -6 : 0)
+  const denominatorShift = (takerGetsCurrency === 'QYBC' ? -6 : 0)
   const shift = numeratorShift - denominatorShift
   return shift === 0 ? quality :
     (new BigNumber(quality)).shift(shift).toString()

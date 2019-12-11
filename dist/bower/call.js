@@ -5636,9 +5636,9 @@ var common = __webpack_require__(0);
 var amount_1 = __webpack_require__(16);
 function adjustQualityForCALL(quality, takerGetsCurrency, takerPaysCurrency) {
     // quality = takerPays.value/takerGets.value
-    // using drops (1e-6 CALL) for CALL values
-    var numeratorShift = (takerPaysCurrency === 'CALL' ? -6 : 0);
-    var denominatorShift = (takerGetsCurrency === 'CALL' ? -6 : 0);
+    // using drops (1e-6 QYBC) for QYBC values
+    var numeratorShift = (takerPaysCurrency === 'QYBC' ? -6 : 0);
+    var denominatorShift = (takerGetsCurrency === 'QYBC' ? -6 : 0);
     var shift = numeratorShift - denominatorShift;
     return shift === 0 ? quality :
         (new bignumber_js_1.default(quality)).shift(shift).toString();
@@ -8692,7 +8692,7 @@ var common = __webpack_require__(0);
 function parseAmount(amount) {
     if (typeof amount === 'string') {
         return {
-            currency: 'CALL',
+            currency: 'QYBC',
             value: common.dropsToCall(amount)
         };
     }
@@ -15507,7 +15507,7 @@ function parseCurrencyAmount(currencyAmount) {
   }
   if (typeof currencyAmount === 'string') {
     return {
-      currency: 'CALL',
+      currency: 'QYBC',
       value: dropsToCALL(new BigNumber(currencyAmount)).toString()
     }
   }
@@ -15990,7 +15990,7 @@ function callToDrops(call) {
 }
 exports.callToDrops = callToDrops;
 function toCalledAmount(amount) {
-    if (amount.currency === 'CALL') {
+    if (amount.currency === 'QYBC') {
         return callToDrops(amount.value);
     }
     return {
@@ -17359,7 +17359,7 @@ var HEX_REGEX = /^[A-F0-9]{40}$/;
 
 function isoToBytes(iso) {
   var bytes = new Uint8Array(20);
-  if (iso !== 'CALL') {
+  if (iso !== 'QYBC') {
     var isoBytes = iso.split('').map(function (c) {return c.charCodeAt(0);});
     bytes.set(isoBytes, 12);}
 
@@ -17401,7 +17401,7 @@ var Currency = makeClass({
   getters: ['isNative', 'iso'], 
   statics: { 
     init: function init() {
-      this.CALL = new this(new Uint8Array(20));}, 
+      this.QYBC = new this(new Uint8Array(20));}, 
 
     from: function from(val) {
       return val instanceof this ? val : new this(bytesFromRepr(val));} }, 
@@ -17427,9 +17427,9 @@ var Currency = makeClass({
         break;}}
 
 
-    var lossLessISO = onlyISO && iso !== 'CALL' && ISO_REGEX.test(iso);
+    var lossLessISO = onlyISO && iso !== 'QYBC' && ISO_REGEX.test(iso);
     this._isNative = onlyISO && _.isEqual(code, [0, 0, 0]);
-    this._iso = this._isNative ? 'CALL' : lossLessISO ? iso : null;}, 
+    this._iso = this._isNative ? 'QYBC' : lossLessISO ? iso : null;}, 
 
   toJSON: function toJSON() {
     if (this.iso()) {
@@ -20422,7 +20422,7 @@ function parseCALLQuantity(node, valueParser) {
     address: node.finalFields.Account || node.newFields.Account,
     balance: {
       counterparty: '',
-      currency: 'CALL',
+      currency: 'QYBC',
       value: dropsToCALL(value).toString()
     }
   }
@@ -29407,7 +29407,7 @@ var codecFactory = __webpack_require__(109);
 
 var ALPHABETS = {
   bitcoin: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
-  call: 'cpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2brdeCg65jkm8oFqi1tuvAxyz',
+  call: 'qpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2brdeCg65jkm8oFci1tuvAxyz',
   tipple: 'RPShNAF39wBUDnEGHJKLM4pQrsT7VWXYZ2bcdeCg65jkm8ofqi1tuvaxyz',
   stellar: 'gsphnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCr65jkm8oFqi1tuvAxyz'
 };
@@ -33996,7 +33996,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"s
 /* 141 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"issue","description":"A currency-counterparty pair, or just currency if it's CALL","allOf":[{"$ref":"amountbase"},{"not":{"required":["value"]}}]}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"issue","description":"A currency-counterparty pair, or just currency if it's QYBC","allOf":[{"$ref":"amountbase"},{"not":{"required":["value"]}}]}
 
 /***/ }),
 /* 142 */
@@ -34122,13 +34122,13 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"a
 /* 162 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"amountbase","description":"Base class for amount and issue","type":"object","properties":{"value":{"description":"The quantity of the currency, denoted as a string to retain floating point precision","$ref":"value"},"currency":{"description":"The three-character code or hexadecimal string used to denote currencies","$ref":"currency"},"counterparty":{"description":"The Call address of the account that owes or is owed the funds (omitted if `currency` is \"CALL\")","$ref":"address"}},"additionalProperties":true,"required":["currency"],"oneOf":[{"properties":{"currency":{"not":{"enum":["CALL"]}}},"required":["counterparty"]},{"properties":{"currency":{"enum":["CALL"]}},"not":{"required":["counterparty"]}}]}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"amountbase","description":"Base class for amount and issue","type":"object","properties":{"value":{"description":"The quantity of the currency, denoted as a string to retain floating point precision","$ref":"value"},"currency":{"description":"The three-character code or hexadecimal string used to denote currencies","$ref":"currency"},"counterparty":{"description":"The Call address of the account that owes or is owed the funds (omitted if `currency` is \"QYBC\")","$ref":"address"}},"additionalProperties":true,"required":["currency"],"oneOf":[{"properties":{"currency":{"not":{"enum":["QYBC"]}}},"required":["counterparty"]},{"properties":{"currency":{"enum":["QYBC"]}},"not":{"required":["counterparty"]}}]}
 
 /***/ }),
 /* 163 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"balance","description":"Balance amount","link":"amount","type":"object","properties":{"value":{"description":"The balance on the trustline","$ref":"signedValue"},"currency":{"description":"The three-character code or hexadecimal string used to denote currencies","$ref":"currency"},"counterparty":{"description":"The Call address of the account that owes or is owed the funds.","$ref":"address"}},"additionalProperties":true,"required":["currency","value"],"oneOf":[{"properties":{"currency":{"not":{"enum":["CALL"]}}},"required":["counterparty"]},{"properties":{"currency":{"enum":["CALL"]}},"not":{"required":["counterparty"]}}]}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"balance","description":"Balance amount","link":"amount","type":"object","properties":{"value":{"description":"The balance on the trustline","$ref":"signedValue"},"currency":{"description":"The three-character code or hexadecimal string used to denote currencies","$ref":"currency"},"counterparty":{"description":"The Call address of the account that owes or is owed the funds.","$ref":"address"}},"additionalProperties":true,"required":["currency","value"],"oneOf":[{"properties":{"currency":{"not":{"enum":["QYBC"]}}},"required":["counterparty"]},{"properties":{"currency":{"enum":["QYBC"]}},"not":{"required":["counterparty"]}}]}
 
 /***/ }),
 /* 164 */
@@ -34164,7 +34164,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"i
 /* 169 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"settingsPlusMemos","type":"object","properties":{"passwordSpent":{"type":"boolean","description":"Indicates that the account has used its free SetRegularKey transaction."},"requireDestinationTag":{"type":"boolean","description":"Requires incoming payments to specify a destination tag."},"requireAuthorization":{"type":"boolean","description":"If set, this account must individually approve other users in order for those users to hold this account’s issuances."},"disallowIncomingCALL":{"type":"boolean","description":"Indicates that client applications should not send CALL to this account. Not enforced by no_called."},"disableMasterKey":{"type":"boolean","description":"Disallows use of the master key to sign transactions for this account."},"enableTransactionIDTracking":{"type":"boolean","description":"Track the ID of this account’s most recent transaction."},"noFreeze":{"type":"boolean","description":"Permanently give up the ability to freeze individual trust lines. This flag can never be disabled after being enabled."},"globalFreeze":{"type":"boolean","description":"Freeze all assets issued by this account."},"defaultCall":{"type":"boolean","description":""},"emailHash":{"description":"Hash of an email address to be used for generating an avatar image. Conventionally, clients use Gravatar to display this image. Use `null` to clear.","oneOf":[{"type":"null"},{"$ref":"hash128"}]},"messageKey":{"type":"string","description":"Public key for sending encrypted messages to this account. Conventionally, it should be a secp256k1 key, the same encryption that is used by the rest of call."},"domain":{"type":"string","description":" The domain that owns this account, as a hexadecimal string representing the ASCII for the domain in lowercase."},"transferRate":{"description":" The fee to charge when users transfer this account’s issuances, as the decimal amount that must be sent to deliver 1 unit. Has precision up to 9 digits beyond the decimal point. Use `null` to set no fee.","oneOf":[{"type":"null"},{"type":"number","minimum":1,"maximum":4.294967295}]},"regularKey":{"oneOf":[{"$ref":"address"},{"type":"null"}],"description":"The public key of a new keypair, to use as the regular key to this account, as a base-58-encoded string in the same format as an account address. Use `null` to remove the regular key."},"signers":{"type":"object","description":"Settings that determine what sets of accounts can be used to sign a transaction on behalf of this account using multisigning.","properties":{"threshold":{"$ref":"uint32","description":"A target number for the signer weights. A multi-signature from this list is valid only if the sum weights of the signatures provided is equal or greater than this value. To delete the signers setting, use the value `0`."},"weights":{"type":"array","description":"Weights of signatures for each signer.","items":{"type":"object","description":"An association of an address and a weight.","properties":{"address":{"$ref":"address"},"weight":{"$ref":"uint32","description":"The weight that the signature of this account counts as towards the threshold."}},"required":["address","weight"],"additionalProperties":true},"minItems":1,"maxItems":8}}},"memos":{"$ref":"memos"}},"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"settingsPlusMemos","type":"object","properties":{"passwordSpent":{"type":"boolean","description":"Indicates that the account has used its free SetRegularKey transaction."},"requireDestinationTag":{"type":"boolean","description":"Requires incoming payments to specify a destination tag."},"requireAuthorization":{"type":"boolean","description":"If set, this account must individually approve other users in order for those users to hold this account’s issuances."},"disallowIncomingCALL":{"type":"boolean","description":"Indicates that client applications should not send QYBC to this account. Not enforced by no_called."},"disableMasterKey":{"type":"boolean","description":"Disallows use of the master key to sign transactions for this account."},"enableTransactionIDTracking":{"type":"boolean","description":"Track the ID of this account’s most recent transaction."},"noFreeze":{"type":"boolean","description":"Permanently give up the ability to freeze individual trust lines. This flag can never be disabled after being enabled."},"globalFreeze":{"type":"boolean","description":"Freeze all assets issued by this account."},"defaultCall":{"type":"boolean","description":""},"emailHash":{"description":"Hash of an email address to be used for generating an avatar image. Conventionally, clients use Gravatar to display this image. Use `null` to clear.","oneOf":[{"type":"null"},{"$ref":"hash128"}]},"messageKey":{"type":"string","description":"Public key for sending encrypted messages to this account. Conventionally, it should be a secp256k1 key, the same encryption that is used by the rest of call."},"domain":{"type":"string","description":" The domain that owns this account, as a hexadecimal string representing the ASCII for the domain in lowercase."},"transferRate":{"description":" The fee to charge when users transfer this account’s issuances, as the decimal amount that must be sent to deliver 1 unit. Has precision up to 9 digits beyond the decimal point. Use `null` to set no fee.","oneOf":[{"type":"null"},{"type":"number","minimum":1,"maximum":4.294967295}]},"regularKey":{"oneOf":[{"$ref":"address"},{"type":"null"}],"description":"The public key of a new keypair, to use as the regular key to this account, as a base-58-encoded string in the same format as an account address. Use `null` to remove the regular key."},"signers":{"type":"object","description":"Settings that determine what sets of accounts can be used to sign a transaction on behalf of this account using multisigning.","properties":{"threshold":{"$ref":"uint32","description":"A target number for the signer weights. A multi-signature from this list is valid only if the sum weights of the signatures provided is equal or greater than this value. To delete the signers setting, use the value `0`."},"weights":{"type":"array","description":"Weights of signatures for each signer.","items":{"type":"object","description":"An association of an address and a weight.","properties":{"address":{"$ref":"address"},"weight":{"$ref":"uint32","description":"The weight that the signature of this account counts as towards the threshold."}},"required":["address","weight"],"additionalProperties":true},"minItems":1,"maxItems":8}}},"memos":{"$ref":"memos"}},"additionalProperties":true}
 
 /***/ }),
 /* 170 */
@@ -34206,25 +34206,25 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"e
 /* 176 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"escrowCreation","link":"escrow-creation","type":"object","properties":{"amount":{"$ref":"value","description":"Amount of CALL for sender to escrow."},"destination":{"$ref":"address","description":"Address to receive escrowed CALL."},"memos":{"$ref":"memos"},"condition":{"type":"string","description":"A hex value representing a [PREIMAGE-SHA-256 crypto-condition](https://tools.ietf.org/html/draft-thomas-crypto-conditions-02#section-8.1). If present, `fulfillment` is required upon execution.","pattern":"^[A-F0-9]{0,256}$"},"allowCancelAfter":{"type":"string","format":"date-time","description":"If present, the escrow may be cancelled after this time."},"allowExecuteAfter":{"type":"string","format":"date-time","description":"If present, the escrow can not be executed before this time."},"sourceTag":{"$ref":"tag","description":"Source tag."},"destinationTag":{"$ref":"tag","description":"Destination tag."}},"required":["amount","destination"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"escrowCreation","link":"escrow-creation","type":"object","properties":{"amount":{"$ref":"value","description":"Amount of QYBC for sender to escrow."},"destination":{"$ref":"address","description":"Address to receive escrowed QYBC."},"memos":{"$ref":"memos"},"condition":{"type":"string","description":"A hex value representing a [PREIMAGE-SHA-256 crypto-condition](https://tools.ietf.org/html/draft-thomas-crypto-conditions-02#section-8.1). If present, `fulfillment` is required upon execution.","pattern":"^[A-F0-9]{0,256}$"},"allowCancelAfter":{"type":"string","format":"date-time","description":"If present, the escrow may be cancelled after this time."},"allowExecuteAfter":{"type":"string","format":"date-time","description":"If present, the escrow can not be executed before this time."},"sourceTag":{"$ref":"tag","description":"Source tag."},"destinationTag":{"$ref":"tag","description":"Destination tag."}},"required":["amount","destination"],"additionalProperties":true}
 
 /***/ }),
 /* 177 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"paymentChannelCreate","link":"payment-channel-create","type":"object","properties":{"amount":{"$ref":"value","description":"Amount of CALL for sender to set aside in this channel."},"destination":{"$ref":"address","description":"Address to receive CALL claims against this channel."},"settleDelay":{"type":"number","description":"Amount of seconds the source address must wait before closing the channel if it has unclaimed CALL."},"publicKey":{"$ref":"publicKey","description":"Public key of the key pair the source will use to sign claims against this channel."},"cancelAfter":{"type":"string","format":"date-time","description":"Time when this channel expires."},"sourceTag":{"$ref":"tag","description":"Source tag."},"destinationTag":{"$ref":"tag","description":"Destination tag."}},"required":["amount","destination","settleDelay","publicKey"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"paymentChannelCreate","link":"payment-channel-create","type":"object","properties":{"amount":{"$ref":"value","description":"Amount of QYBC for sender to set aside in this channel."},"destination":{"$ref":"address","description":"Address to receive QYBC claims against this channel."},"settleDelay":{"type":"number","description":"Amount of seconds the source address must wait before closing the channel if it has unclaimed QYBC."},"publicKey":{"$ref":"publicKey","description":"Public key of the key pair the source will use to sign claims against this channel."},"cancelAfter":{"type":"string","format":"date-time","description":"Time when this channel expires."},"sourceTag":{"$ref":"tag","description":"Source tag."},"destinationTag":{"$ref":"tag","description":"Destination tag."}},"required":["amount","destination","settleDelay","publicKey"],"additionalProperties":true}
 
 /***/ }),
 /* 178 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"paymentChannelFund","link":"payment-channel-fund","type":"object","properties":{"amount":{"$ref":"value","description":"Amount of CALL to fund the channel with."},"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"expiration":{"type":"string","format":"date-time","description":"New expiration for this channel."}},"required":["amount","channel"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"paymentChannelFund","link":"payment-channel-fund","type":"object","properties":{"amount":{"$ref":"value","description":"Amount of QYBC to fund the channel with."},"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"expiration":{"type":"string","format":"date-time","description":"New expiration for this channel."}},"required":["amount","channel"],"additionalProperties":true}
 
 /***/ }),
 /* 179 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"paymentChannelClaim","link":"payment-channel-claim","type":"object","properties":{"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"amount":{"$ref":"value","description":"CALL balance of this channel after claim is processed."},"balance":{"$ref":"value","description":"Amount of CALL authorized by signature."},"signature":{"$ref":"signature","description":"Signature of this claim."},"publicKey":{"$ref":"publicKey","description":"Public key of the channel's sender"},"renew":{"type":"boolean","description":"Clear the channel's expiration time."},"close":{"type":"boolean","description":"Request to close the channel."}},"required":["channel"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"paymentChannelClaim","link":"payment-channel-claim","type":"object","properties":{"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"amount":{"$ref":"value","description":"QYBC balance of this channel after claim is processed."},"balance":{"$ref":"value","description":"Amount of QYBC authorized by signature."},"signature":{"$ref":"signature","description":"Signature of this claim."},"publicKey":{"$ref":"publicKey","description":"Public key of the channel's sender"},"renew":{"type":"boolean","description":"Clear the channel's expiration time."},"close":{"type":"boolean","description":"Request to close the channel."}},"required":["channel"],"additionalProperties":true}
 
 /***/ }),
 /* 180 */
@@ -34248,7 +34248,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"s
 /* 183 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getAccountInfo","type":"object","properties":{"sequence":{"$ref":"sequence","description":"The next (smallest unused) sequence number for this account."},"callBalance":{"$ref":"value","description":"The CALL balance owned by the account."},"ownerCount":{"type":"integer","minimum":0,"description":"Number of other ledger entries (specifically, trust lines and offers) attributed to this account. This is used to calculate the total reserve required to use the account."},"previousInitiatedTransactionID":{"$ref":"hash256","description":"Hash value representing the most recent transaction that was initiated by this account."},"previousAffectingTransactionID":{"$ref":"hash256","description":"Hash value representing the most recent transaction that affected this account node directly. **Note:** This does not include changes to the account’s trust lines and offers."},"previousAffectingTransactionLedgerVersion":{"$ref":"ledgerVersion","description":"The ledger version that the transaction identified by the `previousAffectingTransactionID` was validated in."}},"required":["sequence","callBalance","ownerCount","previousAffectingTransactionID","previousAffectingTransactionLedgerVersion"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getAccountInfo","type":"object","properties":{"sequence":{"$ref":"sequence","description":"The next (smallest unused) sequence number for this account."},"callBalance":{"$ref":"value","description":"The QYBC balance owned by the account."},"ownerCount":{"type":"integer","minimum":0,"description":"Number of other ledger entries (specifically, trust lines and offers) attributed to this account. This is used to calculate the total reserve required to use the account."},"previousInitiatedTransactionID":{"$ref":"hash256","description":"Hash value representing the most recent transaction that was initiated by this account."},"previousAffectingTransactionID":{"$ref":"hash256","description":"Hash value representing the most recent transaction that affected this account node directly. **Note:** This does not include changes to the account’s trust lines and offers."},"previousAffectingTransactionLedgerVersion":{"$ref":"ledgerVersion","description":"The ledger version that the transaction identified by the `previousAffectingTransactionID` was validated in."}},"required":["sequence","callBalance","ownerCount","previousAffectingTransactionID","previousAffectingTransactionLedgerVersion"],"additionalProperties":true}
 
 /***/ }),
 /* 184 */
@@ -34266,7 +34266,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"g
 /* 186 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getLedger","type":"object","properties":{"stateHash":{"$ref":"hash256","description":"Hash of all state information in this ledger."},"closeTime":{"type":"string","format":"date-time","description":"The time at which this ledger was closed."},"closeTimeResolution":{"type":"integer","minimum":1,"description":"Approximate number of seconds between closing one ledger version and closing the next one."},"closeFlags":{"type":"integer","minimum":0,"description":"A bit-map of flags relating to the closing of this ledger. Currently, the ledger has only one flag defined for `closeFlags`: **sLCF_NoConsensusTime** (value 1). If this flag is enabled, it means that validators were in conflict regarding the correct close time for the ledger, but built otherwise the same ledger, so they declared consensus while \"agreeing to disagree\" on the close time. In this case, the consensus ledger contains a `closeTime` value that is 1 second after that of the previous ledger. (In this case, there is no official close time, but the actual real-world close time is probably 3-6 seconds later than the specified `closeTime`.)"},"ledgerHash":{"$ref":"hash256","description":"Unique identifying hash of the entire ledger."},"ledgerVersion":{"$ref":"ledgerVersion","description":"The ledger version of this ledger."},"parentLedgerHash":{"$ref":"hash256","description":"Unique identifying hash of the ledger that came immediately before this one."},"parentCloseTime":{"type":"string","format":"date-time","description":"The time at which the previous ledger was closed."},"totalDrops":{"$ref":"value","description":"Total number of drops (1/1,000,000th of an CALL) in the network, as a quoted integer. (This decreases as transaction fees cause CALL to be destroyed.)"},"transactionHash":{"$ref":"hash256","description":"Hash of the transaction information included in this ledger."},"transactions":{"description":"Array of all transactions that were validated in this ledger. Transactions are represented in the same format as the return value of [getTransaction](#gettransaction).","type":"array","items":{"$ref":"getTransaction","description":"A transaction in the same format as the return value of [getTransaction](#gettransaction)."}},"rawTransactions":{"type":"string","description":"A JSON string containing called format transaction JSON for all transactions that were validated in this ledger."},"transactionHashes":{"description":"An array of hashes of all transactions that were validated in this ledger.","type":"array","items":{"$ref":"id"}},"rawState":{"type":"string","description":"A JSON string containing all state data for this ledger in called JSON format."},"stateHashes":{"description":"An array of hashes of all state data in this ledger.","type":"array","items":{"$ref":"hash256"}}},"required":["stateHash","closeTime","closeTimeResolution","closeFlags","ledgerHash","ledgerVersion","parentLedgerHash","parentCloseTime","totalDrops","transactionHash"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getLedger","type":"object","properties":{"stateHash":{"$ref":"hash256","description":"Hash of all state information in this ledger."},"closeTime":{"type":"string","format":"date-time","description":"The time at which this ledger was closed."},"closeTimeResolution":{"type":"integer","minimum":1,"description":"Approximate number of seconds between closing one ledger version and closing the next one."},"closeFlags":{"type":"integer","minimum":0,"description":"A bit-map of flags relating to the closing of this ledger. Currently, the ledger has only one flag defined for `closeFlags`: **sLCF_NoConsensusTime** (value 1). If this flag is enabled, it means that validators were in conflict regarding the correct close time for the ledger, but built otherwise the same ledger, so they declared consensus while \"agreeing to disagree\" on the close time. In this case, the consensus ledger contains a `closeTime` value that is 1 second after that of the previous ledger. (In this case, there is no official close time, but the actual real-world close time is probably 3-6 seconds later than the specified `closeTime`.)"},"ledgerHash":{"$ref":"hash256","description":"Unique identifying hash of the entire ledger."},"ledgerVersion":{"$ref":"ledgerVersion","description":"The ledger version of this ledger."},"parentLedgerHash":{"$ref":"hash256","description":"Unique identifying hash of the ledger that came immediately before this one."},"parentCloseTime":{"type":"string","format":"date-time","description":"The time at which the previous ledger was closed."},"totalDrops":{"$ref":"value","description":"Total number of drops (1/1,000,000th of an QYBC) in the network, as a quoted integer. (This decreases as transaction fees cause QYBC to be destroyed.)"},"transactionHash":{"$ref":"hash256","description":"Hash of the transaction information included in this ledger."},"transactions":{"description":"Array of all transactions that were validated in this ledger. Transactions are represented in the same format as the return value of [getTransaction](#gettransaction).","type":"array","items":{"$ref":"getTransaction","description":"A transaction in the same format as the return value of [getTransaction](#gettransaction)."}},"rawTransactions":{"type":"string","description":"A JSON string containing called format transaction JSON for all transactions that were validated in this ledger."},"transactionHashes":{"description":"An array of hashes of all transactions that were validated in this ledger.","type":"array","items":{"$ref":"id"}},"rawState":{"type":"string","description":"A JSON string containing all state data for this ledger in called JSON format."},"stateHashes":{"description":"An array of hashes of all state data in this ledger.","type":"array","items":{"$ref":"hash256"}}},"required":["stateHash","closeTime","closeTimeResolution","closeFlags","ledgerHash","ledgerVersion","parentLedgerHash","parentCloseTime","totalDrops","transactionHash"],"additionalProperties":true}
 
 /***/ }),
 /* 187 */
@@ -34290,7 +34290,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"o
 /* 190 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getPaymentChannel","type":"object","properties":{"account":{"$ref":"address","description":"Address that created the payment channel."},"destination":{"$ref":"address","description":"Address to receive CALL claims against this channel."},"amount":{"$ref":"value","description":"The total amount of CALL funded in this channel."},"balance":{"$ref":"value","description":"The total amount of CALL delivered by this channel."},"settleDelay":{"type":"number","description":"Amount of seconds the source address must wait before closing the channel if it has unclaimed CALL."},"expiration":{"type":"string","format":"date-time","description":"Time when this channel expires."},"publicKey":{"$ref":"publicKey","description":"Public key of the key pair the source will use to sign claims against this channel."},"cancelAfter":{"type":"string","format":"date-time","description":"Time when this channel expires as specified at creation."},"sourceTag":{"$ref":"tag","description":"Source tag."},"destinationTag":{"$ref":"tag","description":"Destination tag."},"previousAffectingTransactionID":{"$ref":"hash256","description":"Hash value representing the most recent transaction that affected this payment channel."},"previousAffectingTransactionLedgerVersion":{"$ref":"ledgerVersion","description":"The ledger version that the transaction identified by the `previousAffectingTransactionID` was validated in."}},"required":["account","destination","amount","balance","settleDelay","previousAffectingTransactionID","previousAffectingTransactionLedgerVersion"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getPaymentChannel","type":"object","properties":{"account":{"$ref":"address","description":"Address that created the payment channel."},"destination":{"$ref":"address","description":"Address to receive QYBC claims against this channel."},"amount":{"$ref":"value","description":"The total amount of QYBC funded in this channel."},"balance":{"$ref":"value","description":"The total amount of QYBC delivered by this channel."},"settleDelay":{"type":"number","description":"Amount of seconds the source address must wait before closing the channel if it has unclaimed QYBC."},"expiration":{"type":"string","format":"date-time","description":"Time when this channel expires."},"publicKey":{"$ref":"publicKey","description":"Public key of the key pair the source will use to sign claims against this channel."},"cancelAfter":{"type":"string","format":"date-time","description":"Time when this channel expires as specified at creation."},"sourceTag":{"$ref":"tag","description":"Source tag."},"destinationTag":{"$ref":"tag","description":"Destination tag."},"previousAffectingTransactionID":{"$ref":"hash256","description":"Hash value representing the most recent transaction that affected this payment channel."},"previousAffectingTransactionLedgerVersion":{"$ref":"ledgerVersion","description":"The ledger version that the transaction identified by the `previousAffectingTransactionID` was validated in."}},"required":["account","destination","amount","balance","settleDelay","previousAffectingTransactionID","previousAffectingTransactionLedgerVersion"],"additionalProperties":true}
 
 /***/ }),
 /* 191 */
@@ -34302,7 +34302,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"p
 /* 192 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"ledgerEvent","description":"A ledger event message","type":"object","properties":{"baseFeeCALL":{"$ref":"value","description":"Base fee, in CALL."},"ledgerHash":{"$ref":"hash256","description":"Unique hash of the ledger that was closed, as hex."},"ledgerVersion":{"$ref":"ledgerVersion","description":"Ledger version of the ledger that closed."},"ledgerTimestamp":{"type":"string","format":"date-time","description":"The time at which this ledger closed."},"reserveBaseCALL":{"$ref":"value","description":"The minimum reserve, in CALL, that is required for an account."},"reserveIncrementCALL":{"$ref":"value","description":"The increase in account reserve that is added for each item the account owns, such as offers or trust lines."},"transactionCount":{"type":"integer","minimum":0,"description":"Number of new transactions included in this ledger."},"validatedLedgerVersions":{"type":"string","description":"Range of ledgers that the server has available. This may be discontiguous."}},"addtionalProperties":false,"required":["baseFeeCALL","ledgerHash","ledgerTimestamp","reserveBaseCALL","reserveIncrementCALL","transactionCount","ledgerVersion","validatedLedgerVersions"]}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"ledgerEvent","description":"A ledger event message","type":"object","properties":{"baseFeeCALL":{"$ref":"value","description":"Base fee, in QYBC."},"ledgerHash":{"$ref":"hash256","description":"Unique hash of the ledger that was closed, as hex."},"ledgerVersion":{"$ref":"ledgerVersion","description":"Ledger version of the ledger that closed."},"ledgerTimestamp":{"type":"string","format":"date-time","description":"The time at which this ledger closed."},"reserveBaseCALL":{"$ref":"value","description":"The minimum reserve, in QYBC, that is required for an account."},"reserveIncrementCALL":{"$ref":"value","description":"The increase in account reserve that is added for each item the account owns, such as offers or trust lines."},"transactionCount":{"type":"integer","minimum":0,"description":"Number of new transactions included in this ledger."},"validatedLedgerVersions":{"type":"string","description":"Range of ledgers that the server has available. This may be discontiguous."}},"addtionalProperties":false,"required":["baseFeeCALL","ledgerHash","ledgerTimestamp","reserveBaseCALL","reserveIncrementCALL","transactionCount","ledgerVersion","validatedLedgerVersions"]}
 
 /***/ }),
 /* 193 */
@@ -34314,7 +34314,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"g
 /* 194 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getServerInfo","type":"object","properties":{"buildVersion":{"type":"string","description":"The version number of the running called version."},"completeLedgers":{"type":"string","pattern":"[0-9,-]+","description":"Range expression indicating the sequence numbers of the ledger versions the local called has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”."},"hostID":{"type":"string","description":"On an admin request, returns the hostname of the server running the called instance; otherwise, returns a unique four letter word."},"ioLatencyMs":{"type":"number","description":"Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the called server is probably having serious load issues."},"load":{"type":"object","description":"*(Admin only)* Detailed information about the current load state of the server.","properties":{"jobTypes":{"type":"array","description":"*(Admin only)* Information about the rate of different types of jobs being performed by the server and how much time it spends on each.","items":{"type":"object"}},"threads":{"type":"number","description":"*(Admin only)* The number of threads in the server’s main job pool, performing various call Network operations."}},"required":["jobTypes","threads"]},"lastClose":{"type":"object","description":"Information about the last time the server closed a ledger.","properties":{"convergeTimeS":{"type":"number","description":"The time it took to reach a consensus for the last ledger closing, in seconds."},"proposers":{"type":"integer","minimum":0,"description":"Number of trusted validators participating in the ledger closing."}},"required":["convergeTimeS","proposers"]},"loadFactor":{"type":"number","description":"The load factor the server is currently enforcing, as a multiplier on the base transaction fee. The load factor is determined by the highest of the individual server’s load factor, cluster’s load factor, and the overall network’s load factor."},"peers":{"type":"integer","minimum":0,"description":"How many other called servers the node is currently connected to."},"pubkeyNode":{"type":"string","description":"Public key used to verify this node for internal communications; this key is automatically generated by the server the first time it starts up. (If deleted, the node can just create a new pair of keys.)"},"pubkeyValidator":{"type":"string","description":"*(Admin only)* Public key used by this node to sign ledger validations."},"serverState":{"type":"string","description":"A string indicating to what extent the server is participating in the network.","enum":["disconnected","connected","syncing","tracking","full","validating","proposing"]},"validatedLedger":{"type":"object","description":"Information about the fully-validated ledger with the highest sequence number (the most recent).","properties":{"age":{"type":"integer","minimum":0,"description":"The time since the ledger was closed, in seconds."},"baseFeeCALL":{"$ref":"value","description":"Base fee, in CALL. This may be represented in scientific notation such as 1e-05 for 0.00005."},"hash":{"$ref":"hash256","description":"Unique hash for the ledger, as an uppercase hexadecimal string."},"reserveBaseCALL":{"$ref":"value","description":"Minimum amount of CALL necessary for every account to keep in reserve."},"reserveIncrementCALL":{"$ref":"value","description":"Amount of CALL added to the account reserve for each object an account is responsible for in the ledger."},"ledgerVersion":{"type":"integer","minimum":0,"description":"Identifying sequence number of this ledger version."}},"additionalProperties":true,"required":["age","baseFeeCALL","hash","reserveBaseCALL","reserveIncrementCALL","ledgerVersion"]},"validationQuorum":{"type":"number","description":"Minimum number of trusted validations required in order to validate a ledger version. Some circumstances may cause the server to require more validations."}},"required":["buildVersion","completeLedgers","hostID","ioLatencyMs","lastClose","loadFactor","peers","pubkeyNode","serverState","validatedLedger","validationQuorum"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"getServerInfo","type":"object","properties":{"buildVersion":{"type":"string","description":"The version number of the running called version."},"completeLedgers":{"type":"string","pattern":"[0-9,-]+","description":"Range expression indicating the sequence numbers of the ledger versions the local called has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”."},"hostID":{"type":"string","description":"On an admin request, returns the hostname of the server running the called instance; otherwise, returns a unique four letter word."},"ioLatencyMs":{"type":"number","description":"Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the called server is probably having serious load issues."},"load":{"type":"object","description":"*(Admin only)* Detailed information about the current load state of the server.","properties":{"jobTypes":{"type":"array","description":"*(Admin only)* Information about the rate of different types of jobs being performed by the server and how much time it spends on each.","items":{"type":"object"}},"threads":{"type":"number","description":"*(Admin only)* The number of threads in the server’s main job pool, performing various call Network operations."}},"required":["jobTypes","threads"]},"lastClose":{"type":"object","description":"Information about the last time the server closed a ledger.","properties":{"convergeTimeS":{"type":"number","description":"The time it took to reach a consensus for the last ledger closing, in seconds."},"proposers":{"type":"integer","minimum":0,"description":"Number of trusted validators participating in the ledger closing."}},"required":["convergeTimeS","proposers"]},"loadFactor":{"type":"number","description":"The load factor the server is currently enforcing, as a multiplier on the base transaction fee. The load factor is determined by the highest of the individual server’s load factor, cluster’s load factor, and the overall network’s load factor."},"peers":{"type":"integer","minimum":0,"description":"How many other called servers the node is currently connected to."},"pubkeyNode":{"type":"string","description":"Public key used to verify this node for internal communications; this key is automatically generated by the server the first time it starts up. (If deleted, the node can just create a new pair of keys.)"},"pubkeyValidator":{"type":"string","description":"*(Admin only)* Public key used by this node to sign ledger validations."},"serverState":{"type":"string","description":"A string indicating to what extent the server is participating in the network.","enum":["disconnected","connected","syncing","tracking","full","validating","proposing"]},"validatedLedger":{"type":"object","description":"Information about the fully-validated ledger with the highest sequence number (the most recent).","properties":{"age":{"type":"integer","minimum":0,"description":"The time since the ledger was closed, in seconds."},"baseFeeCALL":{"$ref":"value","description":"Base fee, in QYBC. This may be represented in scientific notation such as 1e-05 for 0.00005."},"hash":{"$ref":"hash256","description":"Unique hash for the ledger, as an uppercase hexadecimal string."},"reserveBaseCALL":{"$ref":"value","description":"Minimum amount of QYBC necessary for every account to keep in reserve."},"reserveIncrementCALL":{"$ref":"value","description":"Amount of QYBC added to the account reserve for each object an account is responsible for in the ledger."},"ledgerVersion":{"type":"integer","minimum":0,"description":"Identifying sequence number of this ledger version."}},"additionalProperties":true,"required":["age","baseFeeCALL","hash","reserveBaseCALL","reserveIncrementCALL","ledgerVersion"]},"validationQuorum":{"type":"number","description":"Minimum number of trusted validations required in order to validate a ledger version. Some circumstances may cause the server to require more validations."}},"required":["buildVersion","completeLedgers","hostID","ioLatencyMs","lastClose","loadFactor","peers","pubkeyNode","serverState","validatedLedger","validationQuorum"],"additionalProperties":true}
 
 /***/ }),
 /* 195 */
@@ -34332,7 +34332,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"o
 /* 197 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"outcome","type":"object","description":"The outcome of the transaction (what effects it had).","properties":{"result":{"type":"string","description":"Result code returned by called. "},"timestamp":{"type":"string","format":"date-time","description":"The timestamp when the transaction was validated. (May be missing when requesting transactions in binary mode.)"},"fee":{"$ref":"value","description":"The CALL fee that was charged for the transaction."},"deliveredAmount":{"$ref":"amount","description":"For payment transactions, it is impossible to reliably compute the actual delivered amount from the balanceChanges due to fixed precision. If the payment is not a partial payment and the transaction succeeded, the deliveredAmount should always be considered to be the amount specified in the transaction."},"balanceChanges":{"type":"object","additionalProperties":{"type":"array","description":"Key is the call address; value is an array of signed amounts representing changes of balances for that address.","items":{"$ref":"balance"}}},"orderbookChanges":{"type":"object","additionalProperties":{"type":"array","description":"Key is the maker's call address; value is an array of changes","items":{"$ref":"orderChange"}}},"ledgerVersion":{"$ref":"ledgerVersion","description":"The ledger version that the transaction was validated in."},"indexInLedger":{"type":"integer","minimum":0,"description":"The ordering index of the transaction in the ledger."}},"required":["result","fee","balanceChanges","orderbookChanges","ledgerVersion","indexInLedger"],"additionalProperties":true}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"outcome","type":"object","description":"The outcome of the transaction (what effects it had).","properties":{"result":{"type":"string","description":"Result code returned by called. "},"timestamp":{"type":"string","format":"date-time","description":"The timestamp when the transaction was validated. (May be missing when requesting transactions in binary mode.)"},"fee":{"$ref":"value","description":"The QYBC fee that was charged for the transaction."},"deliveredAmount":{"$ref":"amount","description":"For payment transactions, it is impossible to reliably compute the actual delivered amount from the balanceChanges due to fixed precision. If the payment is not a partial payment and the transaction succeeded, the deliveredAmount should always be considered to be the amount specified in the transaction."},"balanceChanges":{"type":"object","additionalProperties":{"type":"array","description":"Key is the call address; value is an array of signed amounts representing changes of balances for that address.","items":{"$ref":"balance"}}},"orderbookChanges":{"type":"object","additionalProperties":{"type":"array","description":"Key is the maker's call address; value is an array of changes","items":{"$ref":"orderChange"}}},"ledgerVersion":{"$ref":"ledgerVersion","description":"The ledger version that the transaction was validated in."},"indexInLedger":{"type":"integer","minimum":0,"description":"The ordering index of the transaction in the ledger."}},"required":["result","fee","balanceChanges","orderbookChanges","ledgerVersion","indexInLedger"],"additionalProperties":true}
 
 /***/ }),
 /* 198 */
@@ -34536,13 +34536,13 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"g
 /* 231 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"signPaymentChannelClaimParameters","type":"object","properties":{"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"amount":{"$ref":"value","description":"Amount of CALL authorized by the claim."},"privateKey":{"$ref":"publicKey","description":"The private key to sign the payment channel claim."}},"additionalProperties":true,"required":["channel","amount","privateKey"]}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"signPaymentChannelClaimParameters","type":"object","properties":{"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"amount":{"$ref":"value","description":"Amount of QYBC authorized by the claim."},"privateKey":{"$ref":"publicKey","description":"The private key to sign the payment channel claim."}},"additionalProperties":true,"required":["channel","amount","privateKey"]}
 
 /***/ }),
 /* 232 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"verifyPaymentChannelClaimParameters","type":"object","properties":{"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"amount":{"$ref":"value","description":"Amount of CALL authorized by the claim."},"signature":{"$ref":"signature","description":"Signature of this claim."},"publicKey":{"$ref":"publicKey","description":"Public key of the channel's sender"}},"additionalProperties":true,"required":["channel","amount","signature","publicKey"]}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"verifyPaymentChannelClaimParameters","type":"object","properties":{"channel":{"$ref":"hash256","description":"256-bit hexadecimal channel identifier."},"amount":{"$ref":"value","description":"Amount of QYBC authorized by the claim."},"signature":{"$ref":"signature","description":"Signature of this claim."},"publicKey":{"$ref":"publicKey","description":"Public key of the channel's sender"}},"additionalProperties":true,"required":["channel","amount","signature","publicKey"]}
 
 /***/ }),
 /* 233 */
@@ -38998,8 +38998,8 @@ function getExpirationTime(node) {
 function getQuality(node) {
   var takerGets = node.finalFields.TakerGets || node.newFields.TakerGets
   var takerPays = node.finalFields.TakerPays || node.newFields.TakerPays
-  var takerGetsCurrency = takerGets.currency || 'CALL'
-  var takerPaysCurrency = takerPays.currency || 'CALL'
+  var takerGetsCurrency = takerGets.currency || 'QYBC'
+  var takerPaysCurrency = takerPays.currency || 'QYBC'
   var bookDirectory = node.finalFields.BookDirectory
     || node.newFields.BookDirectory
   var qualityHex = bookDirectory.substring(bookDirectory.length - 16)
@@ -39111,12 +39111,12 @@ var BigNumber = __webpack_require__(5)
 
 /*
 The quality, as stored in the last 64 bits of a directory index, is stored as
-the quotient of TakerPays/TakerGets. It uses drops (1e-6 CALL) for CALL values.
+the quotient of TakerPays/TakerGets. It uses drops (1e-6 QYBC) for QYBC values.
 */
 
 function adjustQualityForCALL(quality, takerGetsCurrency, takerPaysCurrency) {
-  var numeratorShift = (takerPaysCurrency === 'CALL' ? -6 : 0)
-  var denominatorShift = (takerGetsCurrency === 'CALL' ? -6 : 0)
+  var numeratorShift = (takerPaysCurrency === 'QYBC' ? -6 : 0)
+  var denominatorShift = (takerGetsCurrency === 'QYBC' ? -6 : 0)
   var shift = numeratorShift - denominatorShift
   return shift === 0 ? (new BigNumber(quality)).toString() :
     (new BigNumber(quality)).shift(shift).toString()
@@ -39747,7 +39747,7 @@ Decimal.config({
   toExpNeg: MIN_IOU_EXPONENT - MAX_IOU_PRECISION });
 
 
-var AMOUNT_PARAMETERS_DESCRIPTION = '\nNative values must be described in drops, a million of which equal one CALL.\nThis must be an integer number, with the absolute value not exceeding ' + 
+var AMOUNT_PARAMETERS_DESCRIPTION = '\nNative values must be described in drops, a million of which equal one QYBC.\nThis must be an integer number, with the absolute value not exceeding ' + 
 
 
 MAX_NETWORK_DROPS + '\n\nIOU values must have a maximum precision of ' + 
@@ -39780,7 +39780,7 @@ var parsers = {
     if (!str.match(/\d+/)) {
       raiseIllegalAmountError(str);}
 
-    return [new Decimal(str).dividedBy(DROPS_PER_CALL), Currency.CALL];}, 
+    return [new Decimal(str).dividedBy(DROPS_PER_CALL), Currency.QYBC];}, 
 
   object: function object(_object) {
     assert(isDefined(_object.currency), 'currency must be defined');
@@ -39794,7 +39794,7 @@ var parsers = {
 var Amount = makeClass({ 
   Amount: function Amount(value, currency, issuer) {
     this.value = value || new Decimal('0');
-    this.currency = currency || Currency.CALL;
+    this.currency = currency || Currency.QYBC;
     this.issuer = issuer || null;
     this.assertValueIsValid();}, 
 
@@ -39834,7 +39834,7 @@ var Amount = makeClass({
       mantissa[0] &= 0x3F;
       var drops = new Decimal(sign + '0x' + bytesToHex(mantissa));
       var CALLValue = drops.dividedBy(DROPS_PER_CALL);
-      return new this(CALLValue, Currency.CALL);} }, 
+      return new this(CALLValue, Currency.QYBC);} }, 
 
 
   assertValueIsValid: function assertValueIsValid() {
@@ -39843,7 +39843,7 @@ var Amount = makeClass({
       if (this.isNative()) {
         var abs = this.value.abs();
         if (abs.lt(MIN_CALL) || abs.gt(MAX_CALL)) {
-          // value is in CALL scale, but show the value in canonical json form
+          // value is in QYBC scale, but show the value in canonical json form
           raiseIllegalAmountError(this.value.times(DROPS_PER_CALL));}} else 
 
       {
@@ -41463,9 +41463,9 @@ function getTrustlineBalanceAmount(trustline) {
 function formatBalances(options, balances) {
     var result = balances.trustlines.results.map(getTrustlineBalanceAmount);
     if (!(options.counterparty ||
-        (options.currency && options.currency !== 'CALL'))) {
+        (options.currency && options.currency !== 'QYBC'))) {
         var callBalance = {
-            currency: 'CALL',
+            currency: 'QYBC',
             value: balances.call
         };
         result.unshift(callBalance);
@@ -41597,7 +41597,7 @@ function requestPathFind(connection, pathfind) {
     return connection.request(request).then(function (paths) { return addParams(request, paths); });
 }
 function addDirectCallPath(paths, callBalance) {
-    // Add CALL "path" only if the source acct has enough CALL to make the payment
+    // Add QYBC "path" only if the source acct has enough QYBC to make the payment
     var destinationAmount = paths.destination_amount;
     // @ts-ignore: destinationAmount can be a currency amount object! Fix!
     if ((new bignumber_js_1.default(callBalance)).greaterThanOrEqualTo(destinationAmount)) {
@@ -41610,11 +41610,11 @@ function addDirectCallPath(paths, callBalance) {
 }
 function isCalledIOUAmount(amount) {
     return (typeof amount === 'object') &&
-        amount.currency && (amount.currency !== 'CALL');
+        amount.currency && (amount.currency !== 'QYBC');
 }
 function conditionallyAddDirectCALLPath(connection, address, paths) {
     if (isCalledIOUAmount(paths.destination_amount)
-        || !_.includes(paths.destination_currencies, 'CALL')) {
+        || !_.includes(paths.destination_currencies, 'QYBC')) {
         return Promise.resolve(paths);
     }
     return utils_1.getCALLBalance(connection, address, undefined).then(function (callBalance) { return addDirectCallPath(paths, callBalance); });
@@ -42156,10 +42156,10 @@ var ValidationError = utils.common.errors.ValidationError;
 function isCALLToCALLPayment(payment) {
     var sourceCurrency = _.get(payment, 'source.maxAmount.currency', _.get(payment, 'source.amount.currency'));
     var destinationCurrency = _.get(payment, 'destination.amount.currency', _.get(payment, 'destination.minAmount.currency'));
-    return sourceCurrency === 'CALL' && destinationCurrency === 'CALL';
+    return sourceCurrency === 'QYBC' && destinationCurrency === 'QYBC';
 }
 function isIOUWithoutCounterparty(amount) {
-    return amount && amount.currency !== 'CALL'
+    return amount && amount.currency !== 'QYBC'
         && amount.counterparty === undefined;
 }
 function applyAnyCounterpartyEncoding(payment) {
@@ -42174,7 +42174,7 @@ function applyAnyCounterpartyEncoding(payment) {
 function createMaximalAmount(amount) {
     var maxCALLValue = '100000000000';
     var maxIOUValue = '9999999999999999e80';
-    var maxValue = amount.currency === 'CALL' ? maxCALLValue : maxIOUValue;
+    var maxValue = amount.currency === 'QYBC' ? maxCALLValue : maxIOUValue;
     return _.assign({}, amount, { value: maxValue });
 }
 function createPaymentTransaction(address, paymentArgument) {
@@ -42230,7 +42230,7 @@ function createPaymentTransaction(address, paymentArgument) {
         }
     }
     else if (payment.allowPartialPayment === true) {
-        throw new ValidationError('CALL to CALL payments cannot be partial payments');
+        throw new ValidationError('QYBC to QYBC payments cannot be partial payments');
     }
     return txJSON;
 }

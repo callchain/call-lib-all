@@ -4,7 +4,7 @@ var common = require("../../common");
 function parseAmount(amount) {
     if (typeof amount === 'string') {
         return {
-            currency: 'CALL',
+            currency: 'QYBC',
             value: common.dropsToCall(amount)
         };
     }

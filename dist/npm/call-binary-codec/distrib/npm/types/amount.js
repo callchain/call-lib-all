@@ -27,7 +27,7 @@ Decimal.config({
   toExpNeg: MIN_IOU_EXPONENT - MAX_IOU_PRECISION });
 
 
-var AMOUNT_PARAMETERS_DESCRIPTION = '\nNative values must be described in drops, a million of which equal one CALL.\nThis must be an integer number, with the absolute value not exceeding ' +
+var AMOUNT_PARAMETERS_DESCRIPTION = '\nNative values must be described in drops, a million of which equal one QYBC.\nThis must be an integer number, with the absolute value not exceeding ' +
 
 
 MAX_NETWORK_DROPS + '\n\nIOU values must have a maximum precision of ' +
@@ -60,7 +60,7 @@ var parsers = {
     if (!str.match(/\d+/)) {
       raiseIllegalAmountError(str);
     }
-    return [new Decimal(str).dividedBy(DROPS_PER_CALL), Currency.CALL];
+    return [new Decimal(str).dividedBy(DROPS_PER_CALL), Currency.QYBC];
   },
   object: function object(_object) {
     assert(isDefined(_object.currency), 'currency must be defined');
@@ -74,7 +74,7 @@ var parsers = {
 var Amount = makeClass({
   Amount: function Amount(value, currency, issuer) {var validate = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
     this.value = value || new Decimal('0');
-    this.currency = currency || Currency.CALL;
+    this.currency = currency || Currency.QYBC;
     this.issuer = issuer || null;
     if (validate) {
       this.assertValueIsValid();
@@ -116,7 +116,7 @@ var Amount = makeClass({
       mantissa[0] &= 0x3F;
       var drops = new Decimal(sign + '0x' + bytesToHex(mantissa));
       var callValue = drops.dividedBy(DROPS_PER_CALL);
-      return new this(callValue, Currency.CALL, null, false);
+      return new this(callValue, Currency.QYBC, null, false);
     } },
 
   assertValueIsValid: function assertValueIsValid() {
@@ -125,7 +125,7 @@ var Amount = makeClass({
       if (this.isNative()) {
         var abs = this.value.abs();
         if (abs.lt(MIN_CALL) || abs.gt(MAX_CALL)) {
-          // value is in CALL scale, but show the value in canonical json form
+          // value is in QYBC scale, but show the value in canonical json form
           raiseIllegalAmountError(this.value.times(DROPS_PER_CALL));
         }
       } else {
