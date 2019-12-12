@@ -15,7 +15,7 @@ function isoToBytes(iso) {
 }
 
 function isISOCode(val) {
-  return val.length === 3; // ISO_REGEX.test(val);
+  return (val.length === 2 || val.length === 3); // ISO_REGEX.test(val);
 }
 
 function isHex(val) {
@@ -38,7 +38,7 @@ function bytesFromRepr(val) {
   if (isValidRepr(val)) {
     // We assume at this point that we have an object with a length, either 3,
     // 20 or 40.
-    return val.length === 3 ? isoToBytes(val) : val;
+    return (val.length === 2 || val.length === 3) ? isoToBytes(val) : val;
   }
   throw new Error('Unsupported Currency repr: ' + val);
 }
