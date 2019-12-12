@@ -10,7 +10,7 @@ var AccountID = makeClass({
   statics: {
     from: function from(value) {
       return value instanceof this ? value :
-      /^c/.test(value) ? this.fromBase58(value) :
+      /^q/.test(value) ? this.fromBase58(value) :
       new this(value);
     },
     cache: {},

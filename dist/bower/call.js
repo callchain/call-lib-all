@@ -17135,7 +17135,7 @@ var AccountID = makeClass({
   statics: {
     from: function from(value) {
       return value instanceof this ? value :
-      /^c/.test(value) ? this.fromBase58(value) :
+      /^q/.test(value) ? this.fromBase58(value) :
       new this(value);},
 
     cache: {},
@@ -34098,7 +34098,7 @@ module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"i
 /* 158 */
 /***/ (function(module, exports) {
 
-module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"address","description":"A Call account address","type":"string","format":"address","link":"address","pattern":"^c[1-9A-HJ-NP-Za-km-z]{25,34}$"}
+module.exports = {"$schema":"http://json-schema.org/draft-04/schema#","title":"address","description":"A Call account address","type":"string","format":"address","link":"address","pattern":"^q[1-9A-HJ-NP-Za-km-z]{25,34}$"}
 
 /***/ }),
 /* 159 */
