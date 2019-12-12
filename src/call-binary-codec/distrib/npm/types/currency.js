@@ -2,7 +2,7 @@
 var makeClass = require('../utils/make-class');var _require =
 require('../utils/bytes-utils'),slice = _require.slice;var _require2 =
 require('./hash-160'),Hash160 = _require2.Hash160;
-var ISO_REGEX = /^[A-Z0-9]{3}$/;
+var ISO_REGEX = /^[A-Z0-9]{2,3}$/;
 var HEX_REGEX = /^[A-F0-9]{40}$/;
 
 function isoToBytes(iso) {
