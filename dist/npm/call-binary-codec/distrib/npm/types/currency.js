@@ -9,8 +9,6 @@ function isoToBytes(iso) {
   var bytes = new Uint8Array(20);
   if (iso !== 'QYBC') {
     var isoBytes = iso.split('').map(function (c) {return c.charCodeAt(0);});
-    console.log('isoBytes');
-    console.log(isoBytes);
     bytes.set(isoBytes, 15-isoBytes.length);
   }
   return bytes;

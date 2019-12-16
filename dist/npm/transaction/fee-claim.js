@@ -48,45 +48,8 @@ function createFeeClaimTransaction(address, feeclaimArgument) {
         TransactionType: 'FeeClaim',
         Account: feeclaim.source.address,
         Destination: feeclaim.destination.address,
-        Amount: toCalledAmount(amount),
         Flags: 0
     };
-    if (feeclaim.invoiceID !== undefined) {
-        txJSON.InvoiceID = feeclaim.invoiceID;
-    }
-    if (feeclaim.invoice !== undefined) {
-        txJSON.Invoice = utils.convertStringToHex(feeclaim.invoice);
-    }
-    if (feeclaim.source.tag !== undefined) {
-        txJSON.SourceTag = feeclaim.source.tag;
-    }
-    if (feeclaim.destination.tag !== undefined) {
-        txJSON.DestinationTag = feeclaim.destination.tag;
-    }
-    if (feeclaim.memos !== undefined) {
-        txJSON.Memos = _.map(feeclaim.memos, utils.convertMemo);
-    }
-    if (feeclaim.noDirectCall === true) {
-        txJSON.Flags |= feeclaimFlags.NoCallDirect;
-    }
-    if (feeclaim.limitQuality === true) {
-        txJSON.Flags |= feeclaimFlags.LimitQuality;
-    }
-    if (!isCALLToCALLFeeClaim(feeclaim)) {
-        if (feeclaim.allowPartialFeeClaim === true || feeclaim.destination.minAmount !== undefined) {
-            txJSON.Flags |= feeclaimFlags.PartialFeeClaim;
-        }
-        txJSON.SendMax = toCalledAmount(feeclaim.source.maxAmount || feeclaim.source.amount);
-        if (feeclaim.destination.minAmount !== undefined) {
-            txJSON.DeliverMin = toCalledAmount(feeclaim.destination.minAmount);
-        }
-        if (feeclaim.paths !== undefined) {
-            txJSON.Paths = JSON.parse(feeclaim.paths);
-        }
-    }
-    else if (feeclaim.allowPartialFeeClaim === true) {
-        throw new ValidationError('QYBC to QYBC feeclaims cannot be partial feeclaims');
-    }
     return txJSON;
 }
 function prepareFeeClaim(address, feeclaim, instructions) {
