@@ -38,13 +38,13 @@ function addressToHex(address) {
 }
 
 function currencyToHex(currency) {
-  if (currency.length === 3) {
-    var bytes = new Array(20 + 1).join('0').split('').map(parseFloat);
-    bytes[12] = currency.charCodeAt(0) & 0xff;
-    bytes[13] = currency.charCodeAt(1) & 0xff;
-    bytes[14] = currency.charCodeAt(2) & 0xff;
-    return bytesToHex(bytes);
-  }
+  // if (currency.length === 3) {
+  //   var bytes = new Array(20 + 1).join('0').split('').map(parseFloat);
+  //   bytes[12] = currency.charCodeAt(0) & 0xff;
+  //   bytes[13] = currency.charCodeAt(1) & 0xff;
+  //   bytes[14] = currency.charCodeAt(2) & 0xff;
+  //   return bytesToHex(bytes);
+  // }
   return currency;
 }
 

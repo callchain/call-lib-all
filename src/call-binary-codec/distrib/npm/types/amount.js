@@ -60,7 +60,7 @@ var parsers = {
     if (!str.match(/\d+/)) {
       raiseIllegalAmountError(str);
     }
-    return [new Decimal(str).dividedBy(DROPS_PER_CALL), Currency.QYBC];
+    return [new Decimal(str).dividedBy(DROPS_PER_CALL), Currency.call];
   },
   object: function object(_object) {
     assert(isDefined(_object.currency), 'currency must be defined');
@@ -74,7 +74,7 @@ var parsers = {
 var Amount = makeClass({
   Amount: function Amount(value, currency, issuer) {var validate = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
     this.value = value || new Decimal('0');
-    this.currency = currency || Currency.QYBC;
+    this.currency = currency || Currency.call;
     this.issuer = issuer || null;
     if (validate) {
       this.assertValueIsValid();
@@ -116,7 +116,7 @@ var Amount = makeClass({
       mantissa[0] &= 0x3F;
       var drops = new Decimal(sign + '0x' + bytesToHex(mantissa));
       var callValue = drops.dividedBy(DROPS_PER_CALL);
-      return new this(callValue, Currency.QYBC, null, false);
+      return new this(callValue, Currency.call, null, false);
     } },
 
   assertValueIsValid: function assertValueIsValid() {

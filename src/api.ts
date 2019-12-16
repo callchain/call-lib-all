@@ -24,6 +24,7 @@ import getAccountInvoices from './ledger/accountinvoices'
 import getPaymentChannel from './ledger/payment-channel'
 import prepareIssueSet from './transaction/issue-set'
 import preparePayment from './transaction/payment'
+import prepareFeeClaim from './transaction/fee-claim'
 import prepareTrustline from './transaction/trustline'
 import prepareOrder from './transaction/order'
 import prepareOrderCancellation from './transaction/ordercancellation'
@@ -139,6 +140,7 @@ class CallAPI extends EventEmitter {
 
   prepareIssueSet = prepareIssueSet
   preparePayment = preparePayment
+  prepareFeeClaim = prepareFeeClaim
   prepareTrustline = prepareTrustline
   prepareOrder = prepareOrder
   prepareOrderCancellation = prepareOrderCancellation

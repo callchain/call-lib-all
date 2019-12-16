@@ -39,7 +39,12 @@ var txFlags = {
     IssueSet: {
         Additional: 0x00010000,
         NonFungible: 0x00001000
-    }
+    },
+    FeeClaim: {
+        NoCallDirect: 0x00010000,
+        PartialFeeClaim: 0x00020000,
+        LimitQuality: 0x00040000
+    },
 };
 exports.txFlags = txFlags;
 // The following are integer (as opposed to bit) flags
