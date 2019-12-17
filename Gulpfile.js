@@ -34,9 +34,9 @@ function getWebpackConfig(extension, overrides) {
     }],
     entry: './src/index.ts',
     output: {
-      library: 'call',
+      library: 'qybc',
       path: path.join(__dirname, 'build/'),
-      filename: ['call-', extension].join(pkg.version)
+      filename: ['qybc-', extension].join(pkg.version)
     },
     plugins: [
       new webpack.NormalModuleReplacementPlugin(/^ws$/, './wswrapper'),
@@ -109,8 +109,8 @@ function createLink(from, to) {
 
 function createBuildLink(callback) {
   return function(err, res) {
-    createLink('./build/call-' + pkg.version + '.js',
-      './build/call-latest.js');
+    createLink('./build/qybc-' + pkg.version + '.js',
+      './build/qybc-latest.js');
     callback(err, res);
   };
 }
@@ -123,8 +123,8 @@ gulp.task('build-min', function(callback) {
   const webpackConfig = getWebpackConfig('-min.js');
   webpackConfig.plugins.push(new UglifyJsPlugin({uglifyOptions}));
   webpack(webpackConfig, function() {
-    createLink('./build/call-' + pkg.version + '-min.js',
-      './build/call-latest-min.js');
+    createLink('./build/qybc-' + pkg.version + '-min.js',
+      './build/qybc-latest-min.js');
     callback();
   });
 });
@@ -163,20 +163,20 @@ gulp.task('build-core', function(callback) {
 });
 
 gulp.task('bower-build', ['build'], function() {
-  return gulp.src(['./build/call-', '.js'].join(pkg.version))
-  .pipe(rename('call.js'))
+  return gulp.src(['./build/qybc-', '.js'].join(pkg.version))
+  .pipe(rename('qybc.js'))
   .pipe(gulp.dest('./dist/bower'));
 });
 
 gulp.task('bower-build-min', ['build-min'], function() {
-  return gulp.src(['./build/call-', '-min.js'].join(pkg.version))
-  .pipe(rename('call-min.js'))
+  return gulp.src(['./build/qybc-', '-min.js'].join(pkg.version))
+  .pipe(rename('qybc-min.js'))
   .pipe(gulp.dest('./dist/bower'));
 });
 
 gulp.task('bower-build-debug', ['build-debug'], function() {
-  return gulp.src(['./build/call-', '-debug.js'].join(pkg.version))
-  .pipe(rename('call-debug.js'))
+  return gulp.src(['./build/qybc-', '-debug.js'].join(pkg.version))
+  .pipe(rename('qybc-debug.js'))
   .pipe(gulp.dest('./dist/bower'));
 });
 

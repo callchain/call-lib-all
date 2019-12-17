@@ -6,6 +6,7 @@ var common_1 = require("../../common");
 var payment_1 = require("./payment");
 var trustline_1 = require("./trustline");
 var issue_set_1 = require("./issue-set");
+var fee_claim_1 = require("./fee-claim");
 var order_1 = require("./order");
 var cancellation_1 = require("./cancellation");
 var settings_1 = require("./settings");
@@ -34,7 +35,8 @@ function parseTransactionType(type) {
         SignerListSet: 'settings',
         SetFee: 'feeUpdate',
         EnableAmendment: 'amendment',
-        IssueSet: 'issueSet'
+        IssueSet: 'issueSet',
+        FeeClaim: 'FeeClaim'
     };
     return mapping[type] || null;
 }
@@ -55,6 +57,7 @@ function parseTransaction(tx) {
         'feeUpdate': fee_update_1.default,
         'amendment': amendment_1.default,
         'issueSet': issue_set_1.default,
+        'FeeClaim': fee_claim_1.default,
     };
     var parser = mapping[type];
     assert(parser !== undefined, 'Unrecognized transaction type');

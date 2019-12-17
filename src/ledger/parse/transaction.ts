@@ -4,6 +4,7 @@ import {removeUndefined} from '../../common'
 import parsePayment from './payment'
 import parseTrustline from './trustline'
 import parseIssueSet from './issue-set'
+import parseFeeClaim from './fee-claim'
 import parseOrder from './order'
 import parseOrderCancellation from './cancellation'
 import parseSettings from './settings'
@@ -33,7 +34,8 @@ function parseTransactionType(type) {
     SignerListSet: 'settings',
     SetFee: 'feeUpdate', // pseudo-transaction
     EnableAmendment: 'amendment', // pseudo-transaction
-    IssueSet : 'issueSet'
+    IssueSet : 'issueSet',
+    FeeClaim : 'FeeClaim'
   }
   return mapping[type] || null
 }
@@ -55,6 +57,7 @@ function parseTransaction(tx: any): any {
     'feeUpdate': parseFeeUpdate,
     'amendment': parseAmendment,
     'issueSet' : parseIssueSet,
+    'FeeClaim' : parseFeeClaim,
   }
   const parser: Function = mapping[type]
   assert(parser !== undefined, 'Unrecognized transaction type')
