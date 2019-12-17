@@ -34,7 +34,7 @@ function getWebpackConfig(extension, overrides) {
     }],
     entry: './src/index.ts',
     output: {
-      library: 'qybc',
+      library: 'call',
       path: path.join(__dirname, 'build/'),
       filename: ['qybc-', extension].join(pkg.version)
     },
