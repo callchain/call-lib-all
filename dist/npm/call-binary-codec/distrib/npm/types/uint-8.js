@@ -1,10 +1,11 @@
-'use strict';var makeClass = require('../utils/make-class');var _require =
-require('./uint'),UInt = _require.UInt;
-
+'use strict';
+var makeClass = require('../utils/make-class');
+var _require = require('./uint'), UInt = _require.UInt;
 var UInt8 = makeClass({
-  inherits: UInt,
-  statics: { width: 1 } });
-
-
+    inherits: UInt,
+    statics: { width: 1 }
+});
 module.exports = {
-  UInt8: UInt8 };
+    UInt8: UInt8
+};
+//# sourceMappingURL=uint-8.js.map

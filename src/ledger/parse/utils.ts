@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 // import transactionParser = require('call-lib-transactionparser')
-import transactionParser = require('../../call-lib-transactionparser')
+import transactionParser = require('../../call-lib-transactionparser/src')
 import BigNumber from 'bignumber.js'
 import * as common from '../../common'
 import parseAmount from './amount'
