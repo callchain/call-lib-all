@@ -9,7 +9,7 @@ var bignumber_js_1 = require("bignumber.js");
 var src_1 = require("../call-address-codec/src");
 var common_1 = require("../common");
 // import {computeBinaryTransactionHash} from 'call-hashes'
-var call_hashes_1 = require("../call-hashes");
+var src_2 = require("../call-hashes/src");
 function addressToBigNumber(address) {
     var hex = (new Buffer(src_1.decodeAddress(address))).toString('hex');
     return new bignumber_js_1.default(hex, 16);
@@ -33,7 +33,7 @@ function combine(signedTransactions) {
     var signers = unsortedSigners.sort(compareSigners);
     var signedTx = _.assign({}, tx, { Signers: signers });
     var signedTransaction = binary.encode(signedTx);
-    var id = call_hashes_1.computeBinaryTransactionHash(signedTransaction);
+    var id = src_2.computeBinaryTransactionHash(signedTransaction);
     return { signedTransaction: signedTransaction, id: id };
 }
 exports.default = combine;

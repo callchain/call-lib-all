@@ -6,7 +6,7 @@ var keypairs = require("../call-keypairs");
 // import binary = require('call-binary-codec')
 var binary = require("../call-binary-codec");
 // import {computeBinaryTransactionHash} from 'call-hashes'
-var call_hashes_1 = require("../call-hashes");
+var src_1 = require("../call-hashes/src");
 var validate = utils.common.validate;
 function computeSignature(tx, privateKey, signAs) {
     var signingData = signAs ?
@@ -38,7 +38,7 @@ function sign(txJSON, secret, options) {
     var serialized = binary.encode(tx);
     return {
         signedTransaction: serialized,
-        id: call_hashes_1.computeBinaryTransactionHash(serialized)
+        id: src_1.computeBinaryTransactionHash(serialized)
     };
 }
 exports.default = sign;

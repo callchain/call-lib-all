@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js'
 import {decodeAddress} from '../call-address-codec/src'
 import {validate} from '../common'
 // import {computeBinaryTransactionHash} from 'call-hashes'
-import {computeBinaryTransactionHash} from '../call-hashes'
+import {computeBinaryTransactionHash} from '../call-hashes/src'
 
 function addressToBigNumber(address) {
   const hex = (new Buffer(decodeAddress(address))).toString('hex')

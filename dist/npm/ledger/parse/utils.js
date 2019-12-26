@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 // import transactionParser = require('call-lib-transactionparser')
-var transactionParser = require("../../call-lib-transactionparser");
+var transactionParser = require("../../call-lib-transactionparser/src");
 var bignumber_js_1 = require("bignumber.js");
 var common = require("../../common");
 var amount_1 = require("./amount");
