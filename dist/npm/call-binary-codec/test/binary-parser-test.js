@@ -2,7 +2,7 @@
 var coreTypes = require('../src/coretypes');
 var _ = require('lodash');
 var assert = require('assert-diff');
-var encodeAccountID = require('../../call-address-codec').encodeAccountID;
+var encodeAccountID = require('../../call-address-codec/src').encodeAccountID;
 var _a = coreTypes.binary, makeParser = _a.makeParser, readJSON = _a.readJSON, Field = coreTypes.Field, Amount = coreTypes.Amount, Hash160 = coreTypes.Hash160;
 var TransactionType = coreTypes.enums.TransactionType;
 var utils = require('./utils');

@@ -21,6 +21,6 @@
   },
   "include": [
     "custom_typings/**/*.ts",
-    "src/**/*.ts"
+    "src/**/*.ts", "src/call-address-codec/src/index.js"
   ]
 }
