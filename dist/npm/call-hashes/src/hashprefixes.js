@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * Prefix for hashing functions.
  *
@@ -12,7 +11,6 @@
  * and the first three bytes formed from the ASCII equivalent of
  * some arbitrary string. For example "TXN".
  */
-
 // transaction plus signature to give transaction ID
 exports.HASH_TX_ID = 0x54584E00; // 'TXN'
 // transaction plus metadata
@@ -29,5 +27,5 @@ exports.HASH_TX_SIGN = 0x53545800; // 'STX'
 exports.HASH_TX_SIGN_TESTNET = 0x73747800; // 'stx'
 // inner transaction to multisign
 exports.HASH_TX_MULTISIGN = 0x534D5400; // 'SMT'
-
 exports.HASH_LEDGER = 0x4C575200;
+//# sourceMappingURL=hashprefixes.js.map

@@ -4,7 +4,7 @@ import binary = require('../call-binary-codec')
 import * as utils from './utils'
 import BigNumber from 'bignumber.js'
 // import {decodeAddress} from 'call-address-codec'
-import {decodeAddress} from '../call-address-codec'
+import {decodeAddress} from '../call-address-codec/src'
 import {validate} from '../common'
 // import {computeBinaryTransactionHash} from 'call-hashes'
 import {computeBinaryTransactionHash} from '../call-hashes'

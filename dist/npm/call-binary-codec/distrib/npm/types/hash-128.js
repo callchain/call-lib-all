@@ -1,10 +1,11 @@
-'use strict';var makeClass = require('../utils/make-class');var _require =
-require('./hash'),Hash = _require.Hash;
-
+'use strict';
+var makeClass = require('../utils/make-class');
+var _require = require('./hash'), Hash = _require.Hash;
 var Hash128 = makeClass({
-  inherits: Hash,
-  statics: { width: 16 } });
-
-
+    inherits: Hash,
+    statics: { width: 16 }
+});
 module.exports = {
-  Hash128: Hash128 };
+    Hash128: Hash128
+};
+//# sourceMappingURL=hash-128.js.map

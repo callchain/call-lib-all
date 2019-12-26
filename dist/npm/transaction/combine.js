@@ -6,12 +6,12 @@ var binary = require("../call-binary-codec");
 var utils = require("./utils");
 var bignumber_js_1 = require("bignumber.js");
 // import {decodeAddress} from 'call-address-codec'
-var call_address_codec_1 = require("../call-address-codec");
+var src_1 = require("../call-address-codec/src");
 var common_1 = require("../common");
 // import {computeBinaryTransactionHash} from 'call-hashes'
 var call_hashes_1 = require("../call-hashes");
 function addressToBigNumber(address) {
-    var hex = (new Buffer(call_address_codec_1.decodeAddress(address))).toString('hex');
+    var hex = (new Buffer(src_1.decodeAddress(address))).toString('hex');
     return new bignumber_js_1.default(hex, 16);
 }
 function compareSigners(a, b) {

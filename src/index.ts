@@ -3,7 +3,7 @@ export {CallAPI} from './api'
 export {CallAPIBroadcast} from './broadcast'
 
 export {CallBinaryCodec} from './call-binary-codec'
-export {CallAddressCodec} from './call-address-codec'
+export {CallAddressCodec} from './call-address-codec/src'
 export {CallHashes} from './call-hashes'
 export {CallKeypairs} from './call-keypairs'
 export {CallLibTransactionparser} from './call-lib-transactionparser'
