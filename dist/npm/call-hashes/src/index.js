@@ -1,6 +1,6 @@
 'use strict';
 var BigNumber = require('bignumber.js');
-var decodeAddress = require('../../call-address-codec').decodeAddress;
+var decodeAddress = require('../../call-address-codec/src').decodeAddress;
 var binary = require('../../call-binary-codec');
 var hashprefixes = require('./hashprefixes');
 var SHAMap = require('./shamap').SHAMap;

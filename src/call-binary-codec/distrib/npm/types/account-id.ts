@@ -1,5 +1,5 @@
 'use strict';var makeClass = require('../utils/make-class');var _require =
-require('../../../../call-address-codec'),decodeAccountID = _require.decodeAccountID,encodeAccountID = _require.encodeAccountID;var _require2 =
+require('../../../../call-address-codec/src'),decodeAccountID = _require.decodeAccountID,encodeAccountID = _require.encodeAccountID;var _require2 =
 require('./hash-160'),Hash160 = _require2.Hash160;
 
 var AccountID = makeClass({
