@@ -60,7 +60,8 @@ function prepareTransaction(txJSON: any, api: CallAPI,
       txJSON.Fee = scaleValue(common.callToDrops(instructions.fee), multiplier)
       return Promise.resolve(txJSON)
     }
-    const cushion = api._feeCushion
+    // const cushion = api._feeCushion
+    const cushion = 1
     return common.serverInfo.getFee(api.connection, cushion).then(fee => {
       return api.connection.getFeeRef().then(feeRef => {
         const extraFee =
