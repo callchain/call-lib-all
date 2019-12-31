@@ -92,7 +92,7 @@
     "istanbul": "^0.2.10",
     "bn.js": "^2.0.5",
     "create-hash": "^1.1.1",
-    "eslint": "^1.2.1",
+    "eslint": "^6.8.0",
     "hash.js": "^1.0.3"
   },
   "keywords": [],
