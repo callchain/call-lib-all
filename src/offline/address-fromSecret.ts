@@ -1,5 +1,5 @@
-// import keypairs = require('call-keypairs')
-import keypairs = require('../call-keypairs')
+// import keypairs = require('keypairs')
+import keypairs = require('../keypairs/distrib/npm')
 
 function fromSecret(secret) {
     try {

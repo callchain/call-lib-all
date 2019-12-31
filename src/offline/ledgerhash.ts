@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
-// import hashes = require('call-hashes')
-import hashes = require('../call-hashes/src')
+// import hashes = require('hashes')
+import hashes = require('../hashes/src')
 import * as common from '../common'
 
 function convertLedgerHeader(header): any {

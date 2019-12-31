@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-// import hashes = require('call-hashes')
-var hashes = require("../call-hashes/src");
+// import hashes = require('hashes')
+var hashes = require("../hashes/src");
 var common = require("../common");
 function convertLedgerHeader(header) {
     return {
