@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-// import binary = require('call-binary-codec')
-var binary = require("../call-binary-codec");
-// const {computeTransactionHash} = require('call-hashes')
-var computeTransactionHash = require('../call-hashes/src').computeTransactionHash;
+// import binary = require('binary-codec')
+var binary = require("../binary-codec/distrib/npm");
+// const {computeTransactionHash} = require('hashes')
+var computeTransactionHash = require('../hashes/src').computeTransactionHash;
 var utils = require("./utils");
 var transaction_1 = require("./parse/transaction");
 var transaction_2 = require("./transaction");

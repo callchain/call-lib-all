@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-// import binary = require('call-binary-codec')
-var binary = require("../call-binary-codec");
+// import binary = require('binary-codec')
+var binary = require("../binary-codec/distrib/npm");
 var utils = require("./utils");
 var bignumber_js_1 = require("bignumber.js");
-// import {decodeAddress} from 'call-address-codec'
-var src_1 = require("../call-address-codec/src");
+// import {decodeAddress} from 'address-codec'
+var src_1 = require("../address-codec/src");
 var common_1 = require("../common");
-// import {computeBinaryTransactionHash} from 'call-hashes'
-var src_2 = require("../call-hashes/src");
+// import {computeBinaryTransactionHash} from 'hashes'
+var src_2 = require("../hashes/src");
 function addressToBigNumber(address) {
     var hex = (new Buffer(src_1.decodeAddress(address))).toString('hex');
     return new bignumber_js_1.default(hex, 16);

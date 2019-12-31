@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 import BigNumber from 'bignumber.js'
-// const {deriveKeypair} = require('call-keypairs')
-const {deriveKeypair} = require('../call-keypairs')
+// const {deriveKeypair} = require('keypairs')
+const {deriveKeypair} = require('../keypairs/distrib/npm')
 
 import {Amount, CalledAmount} from './types'
 

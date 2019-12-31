@@ -117,9 +117,9 @@ var CallAPIBroadcast = /** @class */ (function (_super) {
         var methodNames = [];
         var CallAPI = this._apis[0];
         for (var _i = 0, _a = Object.getOwnPropertyNames(CallAPI); _i < _a.length; _i++) {
-            var name_1 = _a[_i];
-            if (typeof CallAPI[name_1] === 'function') {
-                methodNames.push(name_1);
+            var name = _a[_i];
+            if (typeof CallAPI[name] === 'function') {
+                methodNames.push(name);
             }
         }
         return methodNames;
