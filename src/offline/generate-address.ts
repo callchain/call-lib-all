@@ -1,5 +1,4 @@
-// import keypairs = require('keypairs')
-import keypairs = require('../keypairs/distrib/npm')
+import keypairs = require('../keypairs')
 import * as common from '../common'
 const {errors, validate} = common
 

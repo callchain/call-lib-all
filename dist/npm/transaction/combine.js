@@ -1,17 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-// import binary = require('binary-codec')
-var binary = require("../binary-codec/distrib/npm");
+var binary = require("../binary-codec");
 var utils = require("./utils");
 var bignumber_js_1 = require("bignumber.js");
-// import {decodeAddress} from 'address-codec'
-var src_1 = require("../address-codec/src");
+var address_codec_1 = require("../address-codec");
 var common_1 = require("../common");
-// import {computeBinaryTransactionHash} from 'hashes'
-var src_2 = require("../hashes/src");
+var hashes_1 = require("../hashes");
 function addressToBigNumber(address) {
-    var hex = (new Buffer(src_1.decodeAddress(address))).toString('hex');
+    var hex = (new Buffer(address_codec_1.decodeAddress(address))).toString('hex');
     return new bignumber_js_1.default(hex, 16);
 }
 function compareSigners(a, b) {
@@ -33,7 +30,7 @@ function combine(signedTransactions) {
     var signers = unsortedSigners.sort(compareSigners);
     var signedTx = _.assign({}, tx, { Signers: signers });
     var signedTransaction = binary.encode(signedTx);
-    var id = src_2.computeBinaryTransactionHash(signedTransaction);
+    var id = hashes_1.computeBinaryTransactionHash(signedTransaction);
     return { signedTransaction: signedTransaction, id: id };
 }
 exports.default = combine;

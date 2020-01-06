@@ -1,13 +1,10 @@
 import * as _ from 'lodash'
-// import binary = require('binary-codec')
-import binary = require('../binary-codec/distrib/npm')
+import binary = require('../binary-codec')
 import * as utils from './utils'
 import BigNumber from 'bignumber.js'
-// import {decodeAddress} from 'address-codec'
-import {decodeAddress} from '../address-codec/src'
+import {decodeAddress} from '../address-codec'
 import {validate} from '../common'
-// import {computeBinaryTransactionHash} from 'hashes'
-import {computeBinaryTransactionHash} from '../hashes/src'
+import {computeBinaryTransactionHash} from '../hashes'
 
 function addressToBigNumber(address) {
   const hex = (new Buffer(decodeAddress(address))).toString('hex')

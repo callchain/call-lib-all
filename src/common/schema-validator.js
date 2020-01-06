@@ -4,7 +4,7 @@ var _ = require("lodash");
 var assert = require("assert");
 var Validator = require('jsonschema').Validator;
 var errors_1 = require("./errors");
-var index_js_1 = require("../../dist/address-codec/src/index.js");
+var index_js_1 = require("../../dist/address-codec");
 var utils_1 = require("./utils");
 exports.isValidSecret = utils_1.isValidSecret;
 function loadSchemas() {

@@ -1,5 +1,4 @@
-// import keypairs = require('keypairs')
-import keypairs = require('../keypairs/distrib/npm')
+import keypairs = require('../keypairs')
 
 function fromSecret(secret) {
     try {

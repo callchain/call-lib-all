@@ -5,7 +5,7 @@ var assert = require("assert");
 var Validator = require('jsonschema').Validator;
 var errors_1 = require("./errors");
 // import {isValidAddress} from 'address-codec'
-var src_1 = require("../address-codec/src");
+var address_codec_1 = require("../address-codec");
 var utils_1 = require("./utils");
 exports.isValidSecret = utils_1.isValidSecret;
 function loadSchemas() {
@@ -124,7 +124,7 @@ function loadSchemas() {
         if (instance === undefined) {
             return true;
         }
-        return src_1.isValidAddress(instance);
+        return address_codec_1.isValidAddress(instance);
     };
     validator.customFormats.secret = function (instance) {
         if (instance === undefined) {

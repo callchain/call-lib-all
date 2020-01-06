@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 // import hashes = require('hashes')
-var hashes = require("../hashes/src");
+var hashes = require("../hashes");
 var common = require("../common");
 function convertLedgerHeader(header) {
     return {

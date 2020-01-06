@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// import keypairs = require('keypairs')
-var keypairs = require("../keypairs/distrib/npm");
+var keypairs = require("../keypairs");
 function fromSecret(secret) {
     try {
         var keypair = keypairs.deriveKeypair(secret);

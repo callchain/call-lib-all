@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils = require("./utils");
-// import keypairs = require('keypairs')
-var keypairs = require("../keypairs/distrib/npm");
-// import binary = require('binary-codec')
-var binary = require("../binary-codec/distrib/npm");
-// import {computeBinaryTransactionHash} from 'hashes'
-var src_1 = require("../hashes/src");
+var keypairs = require("../keypairs");
+var binary = require("../binary-codec");
+var hashes_1 = require("../hashes");
 var validate = utils.common.validate;
 function computeSignature(tx, privateKey, signAs) {
     var signingData = signAs ?
@@ -38,7 +35,7 @@ function sign(txJSON, secret, options) {
     var serialized = binary.encode(tx);
     return {
         signedTransaction: serialized,
-        id: src_1.computeBinaryTransactionHash(serialized)
+        id: hashes_1.computeBinaryTransactionHash(serialized)
     };
 }
 exports.default = sign;

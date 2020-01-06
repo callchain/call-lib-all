@@ -27,12 +27,6 @@ import preparePayment from './transaction/payment'
 import prepareTrustline from './transaction/trustline'
 import prepareOrder from './transaction/order'
 import prepareOrderCancellation from './transaction/ordercancellation'
-import prepareEscrowCreation from './transaction/escrow-creation'
-import prepareEscrowExecution from './transaction/escrow-execution'
-import prepareEscrowCancellation from './transaction/escrow-cancellation'
-import preparePaymentChannelCreate from './transaction/payment-channel-create'
-import preparePaymentChannelFund from './transaction/payment-channel-fund'
-import preparePaymentChannelClaim from './transaction/payment-channel-claim'
 import prepareSettings from './transaction/settings'
 import sign from './transaction/sign'
 import combine from './transaction/combine'
@@ -142,12 +136,6 @@ class CallAPI extends EventEmitter {
   prepareTrustline = prepareTrustline
   prepareOrder = prepareOrder
   prepareOrderCancellation = prepareOrderCancellation
-  prepareEscrowCreation = prepareEscrowCreation
-  prepareEscrowExecution = prepareEscrowExecution
-  prepareEscrowCancellation = prepareEscrowCancellation
-  preparePaymentChannelCreate = preparePaymentChannelCreate
-  preparePaymentChannelFund = preparePaymentChannelFund
-  preparePaymentChannelClaim = preparePaymentChannelClaim
   prepareSettings = prepareSettings
   sign = sign
   combine = combine
