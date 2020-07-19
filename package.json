@@ -85,7 +85,7 @@
     "babel-eslint": "^6.0.0",
     "babel-loader": "^5.3.2",
     "codecov.io": "^0.1.6",
-    "lodash": "^3.10.0",
+    "lodash": "^4.17.19",
     "map-stream": "~0.1.0",
     "nock": "^2.13.0",
     "gulp-uglify": "^1.5.1",
